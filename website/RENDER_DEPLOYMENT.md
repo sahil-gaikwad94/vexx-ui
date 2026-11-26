@@ -97,7 +97,7 @@ git push origin main
 
 1. Click **"New +"** → **"Web Service"**
 2. Select **"Deploy an existing repo from a Git repository"**
-3. Choose the `sahil-gaikwad94/veritas` repository
+3. Choose the `sahil-gaikwad94/vexx` repository
 4. Click **"Connect"**
 
 ### Step 2.3: Configure the Service
@@ -272,4 +272,4 @@ Add `RENDER_HOOK_URL` to your GitHub repository secrets (get it from Render → 
 
 - Render Docs: [https://render.com/docs](https://render.com/docs)
 - Render Community: [https://community.render.com](https://community.render.com)
-- Vexx Repo: [https://github.com/sahil-gaikwad94/veritas](https://github.com/sahil-gaikwad94/veritas)
+- Vexx Repo: [https://github.com/sahil-gaikwad94/vexx](https://github.com/sahil-gaikwad94/vexx)

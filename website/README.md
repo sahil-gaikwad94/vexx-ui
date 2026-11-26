@@ -1,22 +1,30 @@
 # Vexx UI
 
 Official website, interactive WebAssembly playground and documentation portal for
-[Vexx](https://github.com/sahil-gaikwad94/veritas) — solver-guided generation you can verify.
+[Vexx](https://github.com/sahil-gaikwad94/vexx) — solver-guided generation you can verify.
 
-Current release: **vexx1.5**.
+Current release: **vexx2.1**.
 
 ## Design System
 
-**"Cobalt Studio Sheet"** — one electric-cobalt field, one floating alabaster sheet.
+**"Interlocking Proof"** — warm paper, one electric-cobalt field, one obsidian dot field.
 
-- Field: cobalt `#2447DD` → `#10249B` with out-of-focus softbox streaks and a slow sheen.
-- Sheet: warm porcelain `#FCFCFB`, 30–36px radius, deep soft shadow, printed micro-type.
-- Accents: electric cobalt `#2447DD` / `#5A83FF`, ink `#101117`, emerald only for verified states.
-- Signature motif: the fluted-glass orb — vertical refractive ribs over a cobalt radial, with
-  monospace micro-labels in the grooves (`0.23 ms mask`, `425 tests`, `SHA-256`).
-- Type: Plus Jakarta Sans (display, tight uppercase), Inter (body), JetBrains Mono (labels, code).
+- Surfaces: paper `#f3f1ea`, white card `#ffffff`, cobalt `#2145ff`, night `#0b0c11`.
+- Accents: lavender `#bdb9ff` and lime `#d2f45b`, used as rounded highlighter swipes on key words.
+  Cobalt, emerald, amber and crimson keep their verification meanings.
+- Signature asset: a stippled interlocking-piece sculpture (`public/art/interlock-hero.svg`) rising
+  from the lower edge of the hero, with a pointer-reactive canvas particle field over it.
+- Motion: one orchestrated hero reveal, a puzzle-piece mode switch, a constraint "chaos dial" and
+  a scroll progress hairline. All of it respects `prefers-reduced-motion`.
+- Type: Bricolage Grotesque (display), Inter (body), JetBrains Mono (code and telemetry).
 
-The tokens live in `src/app/vexx-theme.css`, imported by `src/app/globals.css`.
+The tokens live in `src/app/vexx-theme.css`, imported by `src/app/globals.css`. The visual philosophy
+and art source are in `../design/`.
+
+## Ecosystem
+
+The same engine also runs inside maya labs.' **maya250M** (a 250M-parameter coding and reasoning
+model) and **MayaWorkbench** (AI research and engineering, P2C).
 
 ## Stack
 

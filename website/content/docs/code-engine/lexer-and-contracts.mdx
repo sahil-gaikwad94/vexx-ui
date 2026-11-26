@@ -1,0 +1,54 @@
+---
+title: Lexer & live contracts
+description: Incremental Python lexing with PEP 701 nested f-strings, and callable contracts checked during generation.
+---
+
+import { Callout, CodeBlock } from '@/components/mdx-components';
+
+## Incremental lexing
+
+`LexerState` carries the lexer across chunks instead of restarting on every prefix. That matters for
+speculative decoding and for any tokenizer that emits code in fragments.
+
+`advance_lexer_state(state, chunk)` returns the next state and the tokens completed by that chunk.
+The 2.1 implementation fixes nested f-string quote handling: valid nested string literals inside an
+f-string are no longer rejected.
+
+```python
+from vexx.code_engine import LexerState, advance_lexer_state
+
+state = LexerState()
+state, tokens = advance_lexer_state(state, "total = sum(x for x in xs ")
+state, tokens = advance_lexer_state(state, "if x > 0)")
+```
+
+## Live callable contracts
+
+A `CallableContract` declares what a call needs to be true at the moment it is emitted.
+`ParameterContract` binds a single argument, `build_contracts` assembles them from a header, and
+`check_call` evaluates the concrete argument list. `header_contract_from_text` extracts a contract
+from a source preamble.
+
+```python
+from vexx.code_engine import ParameterContract, CallableContract, check_call
+
+contract = CallableContract(
+    name="transfer",
+    params=[
+        ParameterContract("amount", lower=0, upper=1000),
+        ParameterContract("currency", choices={"USD", "EUR"}),
+    ],
+    requires=lambda args: args["amount"] <= args["available"],
+)
+
+report = check_call(contract, {"amount": 250, "currency": "USD", "available": 400})
+assert report.ok
+```
+
+Contracts are hard constraints: a call that violates one is rejected before the generated source is
+accepted. Soft preferences never override them.
+
+<Callout variant="check" title="Session isolation">
+Symbol tables are isolated per session and keyed by a collision-resistant digest. Two concurrent
+generations cannot leak identifiers into each other.
+</Callout>

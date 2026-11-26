@@ -1,0 +1,51 @@
+---
+title: Code engine overview
+description: The new 2.1 subsystem for verifying generated Python code and research artefacts.
+---
+
+import { Callout, CodeBlock } from '@/components/mdx-components';
+
+**New in Vexx 2.1.** The original engine constrains JSON. The code engine constrains and checks
+**Python source**: it lexes incrementally, tracks live callable contracts, masks vocabularies,
+evaluates bounded symbolic mathematics in a sandbox, and verifies candidate solutions against
+statistical and dimensional diagnostics.
+
+The subsystem lives under `python/vexx/code_engine/`, with `cas.py`, `calibration.py`,
+`cache_protocol.py`, `rl/code_rewards.py` and `bridges/code_hf.py` alongside it.
+
+<Callout variant="warn" title="What it is not">
+This is a pure-Python-first subsystem. Rust/WASM acceleration is unchanged for existing JSON-mask
+semantics; the code engine does not yet use it. Speculative filtering is **syntax-only** prefix
+filtering, not a parallel tree verifier, and consensus selection is **empirical** consensus, not
+formal minimum-Bayes-risk selection.
+</Callout>
+
+## The five moving parts
+
+| Part | Responsibility |
+| :--- | :--- |
+| Lexing | `LexerState`, `advance_lexer_state` — incremental tokenisation with PEP 701 nested f-strings |
+| Contracts | `ParameterContract`, `CallableContract`, `check_call`, `build_contracts` — live argument checks |
+| Masking | `VexxCodeController.mask_logits`, `filter_draft_tokens` — tier-0/tier-1 vocab and logit masks |
+| CAS & sandbox | `safe_sympy`, `crane_cas_evaluate`, `SandboxRunner` — bounded symbolic work in isolation |
+| Diagnostics | `verify_statistical_report`, `verify_epistemic_calibration`, `parse_unit_dimensions` |
+
+## A minimal session
+
+```python
+from vexx.code_engine import LexerState, advance_lexer_state, VexxCodeController
+
+state = LexerState()
+state, tokens = advance_lexer_state(state, "price = round(")
+
+controller = VexxCodeController(vocab=tokenizer.get_vocab())
+mask = controller.mask_logits(state, raw_logits)
+# illegal continuations are forced to -inf before sampling
+```
+
+## Read next
+
+- [Lexer & live contracts](/docs/code-engine/lexer-and-contracts)
+- [Masking & dead ends](/docs/code-engine/masking-and-dead-ends)
+- [Safe CAS & sandbox](/docs/code-engine/safe-cas-and-sandbox)
+- [Diagnostics & code bridges](/docs/code-engine/diagnostics-and-code-bridges)

@@ -49,11 +49,11 @@
   --color-verify-fail: var(--vt-fail);
   --color-verify-fail-bg: #ffe4e6;
 
-  /* Editorial accents — used sparingly, never for status */
-  --color-accent-coral: #ff5b39;
-  --color-accent-violet: #6e56ff;
-  --color-accent-acid: #d8ff3e;
-  --color-accent-sky: #7db4ff;
+  /* Editorial accents — highlighter swipes, never status colours */
+  --color-accent-coral: #bdb9ff;
+  --color-accent-violet: #7b6bff;
+  --color-accent-acid: #d2f45b;
+  --color-accent-sky: #9dbbff;
 
   /* Terminal palette (used by code surfaces in both themes) */
   --color-term-bg: #0a0d14;
@@ -62,7 +62,7 @@
 
   /* Typography */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-plus-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-plus-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Radii */
@@ -1004,9 +1004,9 @@
 .doc-hero {
   position: relative;
   background:
-    radial-gradient(120% 150% at 88% 4%, rgba(255, 255, 255, 0.6), transparent 52%),
-    radial-gradient(80% 100% at 2% 100%, rgba(110, 86, 255, 0.28), transparent 58%),
-    linear-gradient(126deg, #ff5b39 0%, #ff7a3d 36%, #ffae6d 70%, #ffdcb4 100%);
+    radial-gradient(120% 150% at 88% 4%, rgba(255, 255, 255, 0.5), transparent 52%),
+    radial-gradient(80% 100% at 2% 100%, rgba(189, 185, 255, 0.34), transparent 58%),
+    linear-gradient(126deg, #1733c9 0%, #2145ff 48%, #7ea3ff 100%);
 }
 
 .doc-hero-grid {

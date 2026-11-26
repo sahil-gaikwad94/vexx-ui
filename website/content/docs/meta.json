@@ -3,6 +3,7 @@
   "pages": [
     "index",
     "release-notes",
+    "code-engine",
     "getting-started",
     "authoring-schemas",
     "engine-internals",

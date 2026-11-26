@@ -1,6 +1,6 @@
 # Vexx Official Website & Documentation Portal — Design, UI/UX, Frontend & Systems Architecture Specification (`v1.0`)
 
-**Target Repository:** [`https://github.com/sahil-gaikwad94/veritas`](https://github.com/sahil-gaikwad94/veritas) (47 commits on `main`, Hybrid Rust `vexx-core` / `vexx-py` / `vexx-wasm` + Python 3.11+ engine)  
+**Target Repository:** [`https://github.com/sahil-gaikwad94/vexx`](https://github.com/sahil-gaikwad94/vexx) (47 commits on `main`, Hybrid Rust `vexx-core` / `vexx-py` / `vexx-wasm` + Python 3.11+ engine)  
 **Infrastructure Constraint:** 100% Zero-Cost, Open-Source Stack ($0/month hosting, $0/month compute via client-side WebAssembly execution, $0/month static search & analytics)
 
 ---
@@ -244,7 +244,7 @@ All fonts are 100% free via `next/font/google` with zero external network reques
 
 ### 3.3 Proposed Monorepo Integration (`website/` Workspace)
 
-Add `website/` directly to your existing [`sahil-gaikwad94/veritas`](https://github.com/sahil-gaikwad94/veritas) repository (or as a standalone repo that pulls `crates/vexx-wasm` and `python/vexx`):
+Add `website/` directly to your existing [`sahil-gaikwad94/vexx`](https://github.com/sahil-gaikwad94/vexx) repository (or as a standalone repo that pulls `crates/vexx-wasm` and `python/vexx`):
 
 ```text
 vexx/
@@ -297,7 +297,7 @@ vexx/
 
 ## 4. Expanding `crates/vexx-wasm` for a Live 60-FPS Browser Playground
 
-Your current [`crates/vexx-wasm/src/lib.rs`](https://github.com/sahil-gaikwad94/veritas/blob/main/crates/vexx-wasm/src/lib.rs) already exports `version()`, `prefix_status(text)`, `is_valid_document(text)`, and `PdaHandle` (`new`, `push`, `is_alive`, `is_complete`, `accepts`, `depth`, `mask_json`).
+Your current [`crates/vexx-wasm/src/lib.rs`](https://github.com/sahil-gaikwad94/vexx/blob/main/crates/vexx-wasm/src/lib.rs) already exports `version()`, `prefix_status(text)`, `is_valid_document(text)`, and `PdaHandle` (`new`, `push`, `is_alive`, `is_complete`, `accepts`, `depth`, `mask_json`).
 
 By adding **three small wrapper functions** to `crates/vexx-wasm/src/lib.rs` (calling functions that already exist in `crates/vexx-core` and `crates/vexx-py/src/lib.rs`), your website's browser playground can run the **entire Tier-0 + Tier-1 + Tier-2 Rust engine client-side**:
 
@@ -334,7 +334,7 @@ pub fn emit_smtlib2_certificate(spec_json: &str, instance_json: &str) -> String 
 ### 5.1 Hero Section (`HeroModeToggle.tsx`) — Merging Reference 1 & Reference 2
 
 **Visual & Interaction Choreography:**
-1. **Top Pill Announcement:** `[v2.0] Pure-Rust Native Engine • 17.9x Faster Token Masking (0.23 ms) →`
+1. **Top Pill Announcement:** `[vexx2.1] Pure-Rust Native Engine • 17.9x Faster Token Masking (0.23 ms)`
 2. **Headline with Embedded 3D Toggle (from Reference 1):**
    `Turn LLM Guessing [ ● ] Into Verified Mathematical Truth`
 3. **Interactive State Machine:**
@@ -373,7 +373,7 @@ export function HeroModeToggle() {
         {/* Top Announcement Pill */}
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-black/5 shadow-sm mb-8">
           <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#1E5EFF] text-white">
-            v2.0 Rust Core
+            vexx2.1 Rust Core
           </span>
           <span className="text-xs font-medium text-[#4A5060]">
             17.9x faster native PDA masking (0.23 ms) &bull; 499 passing tests

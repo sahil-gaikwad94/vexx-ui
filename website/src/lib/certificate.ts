@@ -527,7 +527,7 @@ const SAMPLE_WITNESS: JsonValue = {
 };
 
 const SAMPLE_SMT2 = [
-  '; vexx proof certificate (vexx1.5)',
+  '; vexx proof certificate (vexx2.1)',
   '; synthetic sample built in the browser in the engine certificate format',
   '(set-logic ALL)',
   '(declare-const w_AAPL Real)',

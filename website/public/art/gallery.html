@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Interlocking Proof — vexx 2.1</title>
+<style>
+  @font-face { font-family: 'Bricolage'; src: url('/fonts/BricolageGrotesque-Bold.ttf') format('truetype'); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; width: 1600px; height: 1000px; overflow: hidden; background: #2145ff; }
+  body { font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace; }
+  .plate { position: relative; width: 1600px; height: 1000px; background: linear-gradient(158deg, #2145ff 0%, #2a4ef5 46%, #142fa8 100%); overflow: hidden; }
+  .art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .scrim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(18,42,170,0.08), transparent 22%, rgba(5,17,90,0.16) 58%, rgba(4,12,62,0.86) 100%); }
+  .frame { position: absolute; inset: 58px; border: 1px solid rgba(255,255,255,0.13); }
+  .kicker { position: absolute; left: 92px; top: 82px; font-size: 13px; letter-spacing: 0.22em; color: rgba(255,255,255,0.7); }
+  .headline { position: absolute; left: 86px; top: 128px; margin: 0; font-family: 'Bricolage', sans-serif; font-size: 82px; line-height: 0.99; font-weight: 800; letter-spacing: -0.045em; color: #fff; }
+  .headline em { font-style: normal; background: #d2f45b; color: #16171b; padding: 0 0.14em 0.06em; border-radius: 0.12em; }
+  .subtitle { position: absolute; left: 92px; top: 340px; width: 470px; margin: 0; font-size: 18px; line-height: 1.55; color: rgba(255,255,255,0.8); }
+  .coord { position: absolute; right: 96px; top: 86px; text-align: right; line-height: 1.9; font-size: 13px; letter-spacing: 0.22em; color: rgba(255,255,255,0.66); }
+  .state { position: absolute; left: 92px; bottom: 84px; display: flex; gap: 24px; }
+  .state span { display: inline-flex; align-items: center; gap: 9px; font-size: 13px; letter-spacing: 0.16em; color: rgba(255,255,255,0.84); }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 3px; }
+  .foot { position: absolute; right: 96px; bottom: 84px; text-align: right; line-height: 1.8; font-size: 13px; letter-spacing: 0.22em; color: rgba(255,255,255,0.66); }
+</style>
+</head>
+<body>
+  <div class="plate">
+    <img class="art" src="/art/interlock-hero.svg" alt="" />
+    <div class="scrim"></div>
+    <div class="frame"></div>
+
+    <div class="kicker">MAYA LABS. — VEXX 2.1 — STUDY 01</div>
+    <h1 class="headline">Every piece<br>has to <em>fit.</em></h1>
+    <p class="subtitle">A verification is not a verdict; it is a fit. Thousands of small marks decide which tokens may lock, which are refused, and which are computed outright.</p>
+
+    <div class="coord">SAMPLED 0.23 MS<br>CONTRACTED 3.9 µS<br>SPLICED 0 CALLS<br>PROOF SHA-256</div>
+
+    <div class="state">
+      <span><i class="dot" style="background:#bdb9ff"></i>SAMPLED</span>
+      <span><i class="dot" style="background:rgba(255,255,255,.35)"></i>MASKED</span>
+      <span><i class="dot" style="background:#d2f45b"></i>SPLICED</span>
+    </div>
+    <div class="foot">PLATE 01 — INTERLOCKING PROOF<br>STIPPLE FIELD / COBALT / 1600 × 1000</div>
+  </div>
+</body>
+</html>

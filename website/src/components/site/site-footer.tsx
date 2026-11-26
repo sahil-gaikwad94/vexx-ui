@@ -11,7 +11,8 @@ const columns = [
       { label: 'Installation', href: '/docs/getting-started/installation' },
       { label: 'Quickstart', href: '/docs/getting-started/quickstart' },
       { label: 'How Vexx works', href: '/docs/getting-started/how-vexx-works' },
-      { label: 'What changed in 1.5', href: '/docs/release-notes' },
+      { label: 'What changed in 2.1', href: '/docs/release-notes' },
+      { label: 'Code engine', href: '/docs/code-engine/overview' },
       { label: 'Compared to alternatives', href: '/docs/getting-started/comparisons' },
       { label: 'CLI reference', href: '/docs/proofs-rl-and-cli/cli-reference' },
     ],
@@ -110,7 +111,7 @@ export function SiteFooter() {
               rel="noreferrer"
               className="link-draw hover:text-white"
             >
-              Built by {siteConfig.author.name}
+              Built at maya labs.
             </a>
             <a
               href={siteConfig.newIssue}

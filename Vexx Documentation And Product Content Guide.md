@@ -1,6 +1,6 @@
 # Vexx Documentation Architecture, Content Blueprint & Product Strategy Guide (`v1.0`)
 
-**Target Repository:** [`https://github.com/sahil-gaikwad94/veritas`](https://github.com/sahil-gaikwad94/veritas) (47 commits on `main`, 499 passing tests across Python + Rust)  
+**Target Repository:** [`https://github.com/sahil-gaikwad94/vexx`](https://github.com/sahil-gaikwad94/vexx) (47 commits on `main`, 499 passing tests across Python + Rust)  
 **Scope:** Complete product positioning, landing page copywriting, exhaustive Diátaxis documentation sitemap, page-by-page content specifications covering all 65+ exported symbols, 9 domain cartridges, 7 runtime bridges, 6 CLI tools, and 5 category-defining interactive documentation features.
 
 ---
@@ -33,7 +33,7 @@ When an AI engineer, systems architect, or hiring manager lands on the Vexx webs
 ## 2. Landing Page Section-by-Section Content & Copywriting Blueprint
 
 ### Section 1: Hero Banner (With Interactive `Connectly`-Style Headline Toggle)
-* **Pill Badge:** `v2.0 Release • Dependency-Free Rust Core • 17.9x Speedup • 499 Passing Tests`
+* **Pill Badge:** `vexx2.1 Release • Dependency-Free Rust Core • 17.9x Speedup • 425 Python + 69 Rust Tests`
 * **Headline:** `Turn LLM Guessing [ ● ] Into Verified Mathematical Truth.`
 * **Subheadline:** `Pydantic ergonomics on the surface; Rust theorem proving underneath. Vexx enforces algebraic equations, temporal logic, and domain invariants directly inside the token-generation loop—with zero-DoF token splicing and offline cryptographic proofs.`
 * **Primary CTAs:** `[Get Started in 60s →]` | `[pip install vexx-ai (Copy)]` | `[Open WASM Playground]`
@@ -145,7 +145,7 @@ content/docs/
 * **Environment Variables & Kill Switches:** Document `VEXX_NO_NATIVE=1` (forces pure-Python reference execution for A/B debugging) and how fault isolation automatically falls back to Python if a native call ever panics.
 
 ### 4.2 `authoring-schemas/verified-schema-decorator.mdx` & `mathematical-primitives.mdx`
-Document every authoring primitive exported in [`python/vexx/__init__.py`](https://github.com/sahil-gaikwad94/veritas/blob/main/python/vexx/__init__.py):
+Document every authoring primitive exported in [`python/vexx/__init__.py`](https://github.com/sahil-gaikwad94/vexx/blob/main/python/vexx/__init__.py):
 * **Core Decorator & Class:** `@verified_schema` and `VerifiedSchema`.
 * **Four Constraint Verbs:**
   1. `require(expr, tol=...)`: Hard invariant that must hold across all valid instances (enforced via Tier-1 `Hc4AffineContractor` and Tier-2 `VexxNanoSolver`).
@@ -160,7 +160,7 @@ Document every authoring primitive exported in [`python/vexx/__init__.py`](https
   - `keys_subset(mapping, allowed_set)`: Structural set-inclusion constraint over dictionary keys.
 
 ### 4.3 `proofs-rl-and-cli/cli-reference.mdx`
-Provide copy-pasteable examples and sample outputs for all **6 CLI subcommands** in [`python/vexx/cli/main.py`](https://github.com/sahil-gaikwad94/veritas/blob/main/python/vexx/cli/main.py):
+Provide copy-pasteable examples and sample outputs for all **6 CLI subcommands** in [`python/vexx/cli/main.py`](https://github.com/sahil-gaikwad94/vexx/blob/main/python/vexx/cli/main.py):
 1. **`vexx doctor [--json] [--strict]`:** Inspects engine mode (`accelerated` vs. `reference`), wire protocol version, platform metadata, and optional Z3 availability.
 2. **`vexx check-spec <schema.py> [--json]`:** Compiles the `@verified_schema` into `VirSpec` and runs `run_preflight()` (interval contraction + AGDecode container feasibility + exact affine feasibility + strict-bound refutation + regex/format string witness synthesis) in 0 LLM tokens.
 3. **`vexx verify <schema.py> <instance.json>`:** Runs `verify_instance()` / `verify_json()`, outputting a `VerificationReport` (`PASS`, `FAIL`, or `INCOMPLETE`) with per-constraint outcomes (`ConstraintOutcome`), derived value fills (`fill_derived`), and minimal UNSAT cores.
@@ -169,7 +169,7 @@ Provide copy-pasteable examples and sample outputs for all **6 CLI subcommands**
 6. **`vexx synth --from-json <examples.json> [--out generated_schema.py]`:** Automatically infers field bounds, linear conservation laws, and `@verified_schema` Python code from sample JSON payloads.
 
 ### 4.4 `engine-internals/rust-native-and-wasm-core.mdx`
-Document the exact architecture of the 3 Rust crates so systems engineers and contributors can navigate [`crates/`](https://github.com/sahil-gaikwad94/veritas/tree/main/crates):
+Document the exact architecture of the 3 Rust crates so systems engineers and contributors can navigate [`crates/`](https://github.com/sahil-gaikwad94/vexx/tree/main/crates):
 * **`crates/vexx-core` (15 Modules, Zero External Crates):**
   - Grammar & JSON: `pda.rs`, `json.rs`
   - Numerics & Contractors: `interval.rs`, `num.rs`, `expr.rs`, `contractor.rs`

@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 import { Hero } from '@/components/landing/hero';
 import { IntegrationMarquee } from '@/components/landing/integration-marquee';
 import { Creed } from '@/components/landing/creed';
-import { FlutedContractorVisual } from '@/components/landing/fluted-contractor-visual';
+import { HowItWorks } from '@/components/landing/how-it-works';
+import { ChaosDial } from '@/components/landing/chaos-dial';
 import { StandoutCards } from '@/components/landing/standout-cards';
 import { SyntaxMath } from '@/components/landing/syntax-math';
 import { TierPipeline } from '@/components/landing/tier-pipeline';
 import { ZeroDofTape } from '@/components/landing/zero-dof-tape';
 import { Superpowers } from '@/components/landing/superpowers';
+import { InTheWild } from '@/components/landing/in-the-wild';
 import { CartridgesShowcase } from '@/components/landing/cartridges-showcase';
 import { CartridgeBadges } from '@/components/landing/cartridge-badges';
 import { UseCases } from '@/components/landing/use-cases';
@@ -19,6 +21,7 @@ import { DocsGrid } from '@/components/landing/docs-grid';
 import { Faq } from '@/components/landing/faq';
 import { FinalCta } from '@/components/landing/final-cta';
 import { siteConfig } from '@/lib/site';
+import { jsonLdPayload } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Vexx — make the model prove it',
@@ -43,14 +46,16 @@ export default function LandingPage() {
   return (
     <>
       <Hero />
+      <ChaosDial />
       <IntegrationMarquee />
       <Creed />
-      <FlutedContractorVisual />
+      <HowItWorks />
       <StandoutCards />
       <SyntaxMath />
       <TierPipeline />
       <ZeroDofTape />
       <Superpowers />
+      <InTheWild />
       <CartridgesShowcase />
       <CartridgeBadges />
       <UseCases />
@@ -61,7 +66,7 @@ export default function LandingPage() {
       <DocsGrid />
       <Faq />
       <FinalCta />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdPayload(jsonLd) }} />
     </>
   );
 }

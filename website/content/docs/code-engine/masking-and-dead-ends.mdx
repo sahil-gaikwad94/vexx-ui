@@ -1,0 +1,36 @@
+---
+title: Masking & dead ends
+description: Tier-0/tier-1 logit masking, token-id validation, sparse vocabularies and typed dead ends.
+---
+
+import { Callout, CodeBlock } from '@/components/mdx-components';
+
+`VexxCodeController` exposes two entry points:
+
+- `mask_logits(state, logits)` — a tier-0/tier-1 mask over the current lexer state.
+- `filter_draft_tokens(state, candidates)` — the same check for a draft model's speculative tokens.
+
+```python
+from vexx.code_engine import VexxCodeController, DeadEnd
+
+controller = VexxCodeController(vocab=tokenizer.get_vocab(), tokenizer=tokenizer)
+
+try:
+    allowed = controller.mask_logits(state, raw_logits)
+except DeadEnd as dead:
+    print(dead.reason)   # every candidate was masked at this prefix
+```
+
+## What is validated
+
+- **Token ids** are checked against the vocabulary: negative indexing is refused and sparse
+  vocabularies (gaps in the id space) are handled explicitly.
+- **Prefix legality** comes from the incremental lexer, so an unterminated string or an illegal
+  f-string cannot be extended by a masked token.
+- **Contracts** narrow later arguments to values that can still satisfy earlier ones.
+
+<Callout variant="warn" title="Honest scope">
+Speculative filtering is syntax-only prefix filtering. It does not run a parallel tree verifier and
+does not claim that every surviving draft token will pass the final semantic checks. The final
+verifier still has the last word.
+</Callout>

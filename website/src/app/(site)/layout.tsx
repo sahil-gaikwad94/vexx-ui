@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { SiteHeader } from '@/components/site/site-header';
+import { ScrollProgress } from '@/components/site/scroll-progress';
 import { SiteFooter } from '@/components/site/site-footer';
 import { SiteAura } from '@/components/site/site-aura';
 import { Konami } from '@/components/site/konami';
@@ -8,6 +9,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="vx-shell grain relative isolate flex min-h-dvh flex-col">
       <SiteAura />
+      <ScrollProgress />
       <Konami />
       <SiteHeader />
       <main

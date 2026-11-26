@@ -1,19 +1,20 @@
 export const siteConfig = {
   name: 'Vexx',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://vexx-ui.vercel.app',
-  github: 'https://github.com/sahil-gaikwad94/veritas',
-  githubRepo: 'sahil-gaikwad94/veritas',
+  github: 'https://github.com/sahil-gaikwad94/vexx',
+  githubRepo: 'sahil-gaikwad94/vexx',
   author: { name: 'Sahil Gaikwad', url: 'https://github.com/sahil-gaikwad94' },
-  issues: 'https://github.com/sahil-gaikwad94/veritas/issues',
-  newIssue: 'https://github.com/sahil-gaikwad94/veritas/issues/new',
-  discussions: 'https://github.com/sahil-gaikwad94/veritas/discussions',
-  version: 'vexx1.5',
+  company: 'maya labs.',
+  issues: 'https://github.com/sahil-gaikwad94/vexx/issues',
+  newIssue: 'https://github.com/sahil-gaikwad94/vexx/issues/new',
+  discussions: 'https://github.com/sahil-gaikwad94/vexx/discussions',
+  version: 'vexx2.1',
   license: 'Apache-2.0',
   description:
-    'Vexx compiles Pydantic schemas and algebraic constraints into a solver-guided decoder: grammar masking, interval contraction, zero-DoF splicing and offline proof certificates — inside the token loop.',
+    'Vexx 2.1 compiles Pydantic schemas and algebraic constraints into a solver-guided decoder: grammar masking, interval contraction, zero-DoF splicing, a code engine, and offline proof certificates — inside the token loop.',
   shortDescription:
-    'Solver-guided decoding and formal verification for LLM output. Pydantic on the surface, Rust solvers underneath.',
-  installCommand: 'pip install "git+https://github.com/sahil-gaikwad94/veritas.git"',
+    'Solver-guided decoding, code verification and formal proofs for LLM output. Pydantic on the surface, Rust solvers underneath.',
+  installCommand: 'pip install vexx-ai',
   npmWasm: 'cargo build -p vexx-wasm --target wasm32-unknown-unknown',
 } as const;
 
@@ -23,6 +24,31 @@ export const navLinks = [
   { href: '/verify', label: 'Verify' },
   { href: '/examples', label: 'Examples' },
   { href: '/benchmarks', label: 'Benchmarks' },
+] as const;
+
+export const ecosystem = [
+  {
+    id: 'maya250m',
+    label: 'maya250M',
+    kind: 'small language model · coding & reasoning',
+    title: 'A small model with an unusually strict standard.',
+    body: 'maya labs. integrates Vexx 2.1 directly into the decode loop of maya250M, its 250M-parameter coding and reasoning model. Generated functions, patches and reasoning artefacts are constrained and checked before they ever reach the caller — so a tiny model can be trusted with work normally reserved for something much larger.',
+    points: ['code that parses and type-checks', 'reasoning steps that stay inside the spec', 'runs locally, no verification server'],
+    href: '/docs/code-engine/overview',
+    action: 'Explore the code engine',
+    accent: 'lilac',
+  },
+  {
+    id: 'maya-workbench',
+    label: 'MayaWorkbench',
+    kind: 'AI research & engineering · P2C',
+    title: 'Research that closes the loop.',
+    body: 'MayaWorkbench is maya labs.\' AI research and engineering workbench for P2C workflows. Vexx 2.1 sits underneath it: move from prompt to checked code, inspect the receipt for every constrained step, and archive the proof next to the experiment instead of losing it in a chat log.',
+    points: ['prompt to code, with guards on', 'receipts and traces in the workbench', 'proofs you can hand to a reviewer'],
+    href: '/playground',
+    action: 'Try the playground',
+    accent: 'lime',
+  },
 ] as const;
 
 export const heroStats = [
@@ -217,28 +243,28 @@ export const superpowers = [
     kicker: 'vexx serve',
     title: 'A bouncer for the model you already rent',
     body: 'Point an OpenAI-compatible proxy at your upstream. Non-streaming completions are re-verified against the schema before your app sees them: a violation comes back as 422, a pass comes back with a certificate. Streaming keeps flowing and gets a certificate event before it closes.',
-    metric: 'new in 1.5',
+    metric: 'in 2.1',
   },
   {
     id: 'mcp',
     kicker: 'MCP firewall',
     title: 'Tool calls with a constitution',
     body: 'Declare the order tools may fire in, bind later arguments to earlier results, cap spend and taint untrusted strings. An agent that tries to refund more than the last order total gets stopped by the session, not by a postmortem.',
-    metric: 'new in 1.5',
+    metric: 'in 2.1',
   },
   {
     id: 'receipts',
     kicker: 'KL receipts',
     title: 'Know what the constraint actually cost',
     body: 'Masking changes the distribution. Vexx measures it exactly: minus log of the probability mass your mask removed, tracked per field and per step, then bundled into a receipt with content hashes. No more guessing whether a spec quietly lobotomised the model.',
-    metric: 'new in 1.5',
+    metric: 'in 2.1',
   },
   {
     id: 'explain',
     kicker: 'Explain UNSAT',
     title: 'An impossible spec, with the smallest fix',
     body: 'Run explain-unsat and get a per-clause relaxation: the least widening or raising that makes the system satisfiable, or a straight answer that the conflict is structural and no single clause will save it.',
-    metric: 'new in 1.5',
+    metric: 'in 2.1',
   },
   {
     id: 'soundness',
@@ -278,16 +304,16 @@ export const faqs = [
     a: 'Anything that can expose logits or accept a mask: Hugging Face, vLLM, SGLang, llama.cpp, plus OpenAI/Instructor post-verification and an async stream proxy. The engine itself is model-agnostic — a model only needs next_logits(prefix).',
   },
   {
-    q: 'What actually changed in vexx1.5?',
-    a: 'A lot, and most of it is boring on purpose. Soundness fixes for indefinite quadratic forms, word-boundary regexes, Fourier-Motzkin pruning and the Rust quadratic contraction. Then the interesting part: per-field KL receipts, an OpenAI-compatible verifying proxy, an LTLf MCP firewall with spend caps and taint tracking, a minimal-relaxation wizard, RL trace export and an adaptive solver-feedback scratchpad on CDCL backtrack. 425 Python tests and 69 Rust unit tests agree.',
+    q: 'What actually changed in vexx2.1?',
+    a: 'Vexx 2.1 is the standalone release of the newer neuro-symbolic engine: an incremental Python lexer with PEP 701 f-strings, live callable contracts, tier-0/tier-1 code masking, a bounded safe SymPy CAS, an isolated subprocess sandbox, statistical and dimensional diagnostics, empirical candidate selection and RLVR rewards. Alongside it: KL receipts, the LTLf MCP firewall, an OpenAI-compatible verifying proxy, explain-unsat and export-rl. Package and Rust workspace are both versioned 2.1.0.',
   },
   {
     q: 'Can I install it from PyPI today?',
-    a: 'The distribution name is vexx-ai; the PyPI release is the last step. Until it lands, install straight from GitHub with pip install "git+https://github.com/sahil-gaikwad94/veritas.git" or use an editable install from a clone. Same engine, only the packaging is pending.',
+    a: 'Yes. The distribution is vexx-ai: pip install vexx-ai. Extras cover z3, cas, rl and dev. The pure-Python engine needs no Rust toolchain; the native accelerator is installed separately and every call falls back to Python.',
   },
   {
     q: 'Is it production ready?',
-    a: 'The Python engine is complete and covered by 425 tests (41 native-parity tests skip unless the native wheel is built) plus 69 Rust unit tests. GPU bridges are adapter-tested against fakes, not live vendor servers, and the out-of-scope list is documented. Treat it as a rigorous 1.5 that still wants your own integration tests.',
+    a: 'The Python engine is complete and covered by 425 tests (41 native-parity tests skip unless the native wheel is built) plus 69 Rust unit tests and 12 property tests. GPU bridges are adapter-tested against fakes, not live vendor servers, and the out-of-scope list is documented. Treat it as a rigorous 2.1 that still wants your own integration tests.',
   },
   {
     q: 'Will this make my model smarter?',

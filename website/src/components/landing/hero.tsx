@@ -8,13 +8,15 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
+  Copy,
   Play,
   ShieldCheck,
-  Sparkles,
   Zap,
 } from 'lucide-react';
-import { heroStats, siteConfig } from '@/lib/site';
+import { heroStats } from '@/lib/site';
 import { cn } from '@/lib/utils';
+import { StippleField } from '@/components/landing/stipple-field';
+import { Magnetic } from '@/components/site/magnetic';
 
 type Mode = 'json' | 'vexx';
 
@@ -84,7 +86,6 @@ function HeroDemo({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void })
 
   return (
     <div className="vx-ink-island relative overflow-hidden rounded-[22px]">
-      {/* top bar */}
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 bg-white/[0.03] px-3 py-2.5 sm:px-4">
         <div className="flex min-w-0 items-center gap-2">
           <span className="flex gap-1.5">
@@ -103,7 +104,7 @@ function HeroDemo({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void })
             aria-selected={!isVexx}
             onClick={() => setMode('json')}
             className={cn(
-              'rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide transition-colors sm:px-3 sm:text-[10.5px]',
+              'rounded-full px-2.5 py-1 font-mono text-[10px] transition-colors sm:px-3 sm:text-[10.5px]',
               !isVexx ? 'bg-rose-500/20 text-rose-200' : 'text-slate-400 hover:text-slate-200',
             )}
           >
@@ -114,21 +115,20 @@ function HeroDemo({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void })
             aria-selected={isVexx}
             onClick={() => setMode('vexx')}
             className={cn(
-              'rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide transition-colors sm:px-3 sm:text-[10.5px]',
-              isVexx ? 'bg-emerald-500/20 text-emerald-200' : 'text-slate-400 hover:text-slate-200',
+              'rounded-full px-2.5 py-1 font-mono text-[10px] transition-colors sm:px-3 sm:text-[10.5px]',
+              isVexx ? 'bg-lime-300/20 text-lime-200' : 'text-slate-400 hover:text-slate-200',
             )}
           >
-            Vexx
+            Vexx 2.1
           </button>
         </div>
       </div>
 
       <div className="grid lg:grid-cols-[1.05fr_1fr]">
-        {/* spec panel */}
         <div className="relative border-b border-white/10 p-3.5 sm:p-4 lg:border-b-0 lg:border-r">
-          <div className="mb-2 flex items-center justify-between font-mono text-[9.5px] uppercase tracking-[0.14em] text-slate-400">
+          <div className="mb-2 flex items-center justify-between font-mono text-[9.5px] tracking-[0.1em] text-slate-400">
             <span>compiled spec</span>
-            <span>VIR · vexx1.5</span>
+            <span>VIR · vexx2.1</span>
           </div>
           <div
             tabIndex={0}
@@ -140,13 +140,12 @@ function HeroDemo({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void })
           </div>
         </div>
 
-        {/* output panel */}
         <div className="relative p-3.5 sm:p-4">
-          <div className="mb-2 flex items-center justify-between font-mono text-[9.5px] uppercase tracking-[0.14em] text-slate-400">
+          <div className="mb-2 flex items-center justify-between font-mono text-[9.5px] tracking-[0.1em] text-slate-400">
             <span>decoded stream</span>
             <span
               className={cn(
-                'inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] tracking-normal',
+                'inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px]',
                 isVexx ? 'bg-emerald-500/15 text-emerald-300' : 'bg-rose-500/15 text-rose-300',
               )}
             >
@@ -189,21 +188,9 @@ function HeroDemo({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void })
                   </div>
                 ))}
                 <div className="text-slate-400">{'}'},</div>
-                <JsonLine
-                  label="expected_return"
-                  value={isVexx ? '0.1615' : '0.21'}
-                  accent={isVexx ? 'pass' : 'fail'}
-                />
-                <JsonLine
-                  label="volatility"
-                  value={isVexx ? '0.2044' : '0.14'}
-                  accent={isVexx ? 'pass' : 'fail'}
-                />
-                <JsonLine
-                  label="sharpe"
-                  value={isVexx ? '0.5945' : '1.214'}
-                  accent={isVexx ? 'pass' : 'fail'}
-                />
+                <JsonLine label="expected_return" value={isVexx ? '0.1615' : '0.21'} accent={isVexx ? 'pass' : 'fail'} />
+                <JsonLine label="volatility" value={isVexx ? '0.2044' : '0.14'} accent={isVexx ? 'pass' : 'fail'} />
+                <JsonLine label="sharpe" value={isVexx ? '0.5945' : '1.214'} accent={isVexx ? 'pass' : 'fail'} />
               </div>
               <div className="text-slate-400">{'}'}</div>
             </motion.div>
@@ -230,9 +217,7 @@ function HeroDemo({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void })
                 <span className="inline-flex items-center gap-1 rounded-md bg-rose-500/10 px-2 py-1 font-mono text-[9.5px] text-rose-300">
                   <AlertTriangle className="h-3 w-3" /> sharpe ≠ derived
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-md bg-white/5 px-2 py-1 font-mono text-[9.5px] text-slate-400">
-                  retry loop
-                </span>
+                <span className="rounded-md bg-white/5 px-2 py-1 font-mono text-[9.5px] text-slate-400">retry loop</span>
               </div>
             )}
           </div>
@@ -246,7 +231,7 @@ function HeroDemo({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void })
           { k: 'Witness', v: isVexx ? 'SHA-256' : 'none' },
         ].map((m) => (
           <div key={m.k} className="px-3 py-2.5">
-            <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-slate-400">{m.k}</p>
+            <p className="font-mono text-[9px] tracking-[0.1em] text-slate-400">{m.k}</p>
             <p
               className={cn(
                 'mt-0.5 font-mono text-[11px] font-medium sm:text-[12px]',
@@ -262,19 +247,9 @@ function HeroDemo({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void })
   );
 }
 
-function OrbCallout({
-  className,
-  label,
-  value,
-  align = 'left',
-}: {
-  className?: string;
-  label: string;
-  value: string;
-  align?: 'left' | 'right';
-}) {
+function FieldNote({ label, value, className }: { label: string; value: string; className?: string }) {
   return (
-    <span className={cn('vx-orb-label', align === 'right' && 'text-right', className)}>
+    <span className={cn('vx-orb-label', className)}>
       {label}
       <b>{value}</b>
     </span>
@@ -283,140 +258,151 @@ function OrbCallout({
 
 export function Hero() {
   const [demoMode, setDemoMode] = useState<Mode>('vexx');
+  const [copied, setCopied] = useState(false);
   const reduce = useReducedMotion();
+  const isVexx = demoMode === 'vexx';
+
+  const copyInstall = async () => {
+    try {
+      await navigator.clipboard.writeText('pip install vexx-ai');
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      /* clipboard unavailable — the command is still visible */
+    }
+  };
 
   return (
     <>
-      {/* ================= The sheet's opening composition ================= */}
       <section className="relative">
-        <div className="grid lg:grid-cols-[minmax(0,1.03fr)_minmax(0,0.97fr)]">
-          {/* ---- left: printed copy ---- */}
-          <div className="vx-rise relative z-10 px-5 pb-9 pt-6 sm:px-9 sm:pb-11 sm:pt-8 lg:px-12 lg:pb-14 lg:pt-10">
+        <div className="grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          {/* printed copy */}
+          <div className="vx-rise relative z-10 px-5 pb-10 pt-6 sm:px-9 sm:pb-12 sm:pt-8 lg:px-12 lg:pb-14 lg:pt-10">
             <div className="flex items-center justify-between gap-3">
               <span className="vx-mono inline-flex items-center gap-2 text-ink-primary">
-                <span className="vx-dot bg-cobalt-600" /> vexx
+                <span className="vx-dot bg-cobalt-600" /> vexx <span className="text-ink-muted">by maya labs.</span>
               </span>
-              <span className="vx-mono text-ink-muted">release vexx1.5</span>
+              <span className="vx-mono text-ink-muted">vexx2.1</span>
             </div>
 
             <div className="mt-10 sm:mt-12 lg:mt-14">
               <span className="vx-chip">
-                <Sparkles className="h-3 w-3 text-cobalt-600" />
-                audit-hardened · 1.5
+                <span className="h-1.5 w-1.5 rounded-full bg-[#7b6bff]" />
+                new in 2.1 · code engine · receipts · MCP firewall
               </span>
 
               <h1 className="vx-display mt-5 text-ink-primary">
                 Make the model{' '}
                 <button
                   aria-label="Toggle Vexx solver mode"
-                  aria-pressed={demoMode === 'vexx'}
-                  onClick={() => setDemoMode(demoMode === 'vexx' ? 'json' : 'vexx')}
-                  className="mx-1 inline-flex h-[0.62em] w-[1.3em] cursor-pointer items-center rounded-full p-[0.055em] align-middle transition-transform active:scale-95"
-                  style={{
-                    background:
-                      demoMode === 'vexx'
-                        ? 'linear-gradient(90deg, #4F7CFF 0%, #1230B4 100%)'
-                        : 'linear-gradient(90deg, #C6CAD5 0%, #8A90A0 100%)',
-                    boxShadow:
-                      demoMode === 'vexx'
-                        ? '0 0.3em 0.7em -0.2em rgba(18,48,180,0.6), inset 0 2px 4px rgba(255,255,255,0.45)'
-                        : '0 0.3em 0.7em -0.25em rgba(16,17,23,0.35), inset 0 2px 4px rgba(255,255,255,0.5)',
-                  }}
+                  aria-pressed={isVexx}
+                  onClick={() => setDemoMode(isVexx ? 'json' : 'vexx')}
+                  className={cn(
+                    'vx-piece-switch',
+                    isVexx
+                      ? 'bg-gradient-to-r from-[#2145ff] to-[#0f2ac2] text-white shadow-[0_6px_16px_-6px_rgba(33,69,255,0.8),inset_0_1px_0_rgba(255,255,255,0.5)]'
+                      : 'bg-[#c8cbd3] text-[#555b67] shadow-inner',
+                  )}
                 >
                   <motion.span
                     layout
-                    transition={{ type: 'spring', stiffness: 450, damping: 30 }}
-                    className={cn(
-                      'block h-[0.5em] w-[0.5em] rounded-full bg-white shadow-md',
-                      demoMode === 'vexx' ? 'ml-auto' : '',
-                    )}
+                    transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                    className={cn('vx-piece-knob', isVexx && 'ml-auto')}
                   />
                 </button>{' '}
-                prove it.
+                <span className={isVexx ? 'vx-marker' : 'vx-marker vx-marker--lime'}>{isVexx ? 'prove it.' : 'guess.'}</span>
               </h1>
 
-              <p className="mt-5 max-w-[47ch] text-[15px] leading-relaxed text-ink-secondary sm:text-[16.5px]">
-                Vexx compiles your Pydantic schema — and the algebra between its fields — straight into
-                the decoder. Illegal tokens never get a chance to be sampled, derived values are computed
-                instead of guessed, and every result can ship with a receipt that verifies offline.
+              <p className="mt-5 max-w-[48ch] text-[15px] leading-relaxed text-ink-secondary sm:text-[16.5px]">
+                Structured output you can actually trust. Vexx compiles your schema and the algebra
+                between its fields into the decoder — then re-verifies every result and ships a proof
+                that stands on its own.
               </p>
 
-              <p className="mt-3 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-ink-muted">
-                Same prompt · same model · no plausible nonsense
-              </p>
+              <p className="vx-mono mt-3 text-ink-muted">same prompt · same model · no plausible nonsense</p>
 
               <div className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:items-center">
-                <Link href="/docs/getting-started/quickstart" className="vx-btn vx-btn-dark h-11 px-5">
-                  Start in 60 seconds
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                <Magnetic>
+                  <Link href="/docs/getting-started/quickstart" className="vx-btn vx-btn-dark h-11 px-5">
+                    Start in 60 seconds
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Magnetic>
                 <Link href="/playground" className="vx-btn vx-btn-light h-11 px-5">
                   <Play className="h-3.5 w-3.5 fill-cobalt-500 text-cobalt-500" />
-                  Break the decoder
+                  Open the playground
                 </Link>
               </div>
 
-              <div className="mt-4 flex items-center gap-x-3 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-muted">
-                <span className="text-ink-secondary">pip install vexx-ai</span>
-                <span aria-hidden className="h-1 w-1 shrink-0 rounded-full bg-border-strong" />
-                <span className="whitespace-nowrap">{siteConfig.version}</span>
-                <span aria-hidden className="hidden h-1 w-1 shrink-0 rounded-full bg-border-strong sm:inline-block" />
-                <span className="hidden sm:inline">Python + Rust</span>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={copyInstall}
+                  aria-label="Copy install command"
+                  className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-canvas px-3.5 py-2 font-mono text-[11px] text-ink-secondary transition-colors hover:border-border-cobalt hover:text-ink-primary"
+                >
+                  <span className="text-ink-primary">pip install vexx-ai</span>
+                  {copied ? <Check className="h-3.5 w-3.5 text-verify-pass" /> : <Copy className="h-3.5 w-3.5 text-ink-muted" />}
+                </button>
+                <Link href="/docs" className="link-draw font-mono text-[11px] text-ink-secondary hover:text-ink-primary">
+                  Read the docs
+                </Link>
               </div>
+
+              <a
+                href="#in-the-wild"
+                className="mt-3 inline-flex max-w-full items-center gap-2 rounded-full border border-border-cobalt bg-cobalt-50/60 px-3 py-1.5 font-mono text-[10px] text-cobalt-700 transition-colors hover:bg-cobalt-100 dark:bg-cobalt-500/10 dark:text-cobalt-300"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-accent-coral" />
+                also running inside maya250M + MayaWorkbench
+              </a>
             </div>
           </div>
 
-          {/* ---- right: fluted cobalt orb ---- */}
-          <div className="vx-orb-panel relative min-h-[300px] border-t border-white/10 sm:min-h-[360px] lg:min-h-[568px] lg:border-l lg:border-t-0">
+          {/* cropped stipple interlock */}
+          <div className="vx-orb-panel relative min-h-[320px] border-t border-white/10 sm:min-h-[380px] lg:min-h-[600px] lg:border-l lg:border-t-0">
             <div aria-hidden className="vx-orb" />
-            <div aria-hidden className="vx-flutes" />
-            <div aria-hidden className="vx-flutes--soft" />
-            <div aria-hidden className="vx-flutes-sheen" />
+            <StippleField />
 
-            <div className="relative z-10 flex h-full min-h-[300px] flex-col justify-between p-5 sm:min-h-[360px] sm:p-7 lg:min-h-[568px]">
+            <div className="relative z-10 flex h-full min-h-[320px] flex-col justify-between p-5 sm:min-h-[380px] sm:p-7 lg:min-h-[600px]">
               <div className="flex items-start justify-between gap-3">
-                <span className="vx-mono text-white/70">solver-guided decoding</span>
-                <span className="vx-mono text-white/45">cobalt / 1.5</span>
+                <span className="vx-mono text-white/75">solver-guided decoding</span>
+                <span className="vx-mono text-white/55">vexx2.1</span>
               </div>
 
               <div className="pointer-events-none absolute inset-0 hidden sm:block">
-                <OrbCallout className="left-[7%] top-[57%]" label="mask" value="0.23 ms" />
-                <OrbCallout className="left-[31%] top-[24%]" label="spliced" value="0 LLM calls" />
-                <OrbCallout
-                  className="right-[7%] top-[70%]"
-                  label="witness"
-                  value="SHA-256"
-                  align="right"
-                />
-                <OrbCallout
-                  className="right-[6%] top-[22%]"
-                  label="suite"
-                  value="425 tests"
-                  align="right"
-                />
+                <FieldNote className="left-[7%] top-[30%]" label="mask" value="0.23 ms" />
+                <FieldNote className="left-[36%] top-[17%]" label="spliced" value="0 LLM calls" />
+                <FieldNote className="right-[7%] top-[35%]" label="witness" value="SHA-256" />
+                <FieldNote className="right-[6%] top-[63%]" label="receipt" value="per-field KL" />
               </div>
 
-              <div className="relative flex flex-1 items-center justify-center py-8">
-                <motion.span
-                  initial={reduce ? false : { opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
+              <div className="relative mt-auto flex flex-1 items-end pb-2">
+                <motion.div
+                  initial={reduce ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                  className="vx-orb-word"
+                  className="max-w-[34ch]"
                 >
-                  vexx
-                </motion.span>
+                  <p className="font-display text-[1.6rem] font-bold leading-[1.1] tracking-[-0.03em] text-white sm:text-[2rem]">
+                    Every piece has to fit.
+                  </p>
+                  <p className="mt-2 text-[12px] leading-relaxed text-white/70">
+                    A stippled tile for every token: sampled, masked, or deterministically spliced.
+                    Only the pieces that agree are allowed to lock.
+                  </p>
+                </motion.div>
               </div>
 
-              <div className="relative flex flex-col items-start gap-2.5 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
-                <p className="font-mono text-[9px] uppercase leading-relaxed tracking-[0.16em] text-white/65">
-                  425 python · 69 rust · 0 mandatory crates
-                </p>
+              <div className="relative flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/20 pt-3 font-mono text-[9.5px] text-white/75">
+                <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#bdb9ff]" /> sampled</span>
+                <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-white/35" /> masked</span>
+                <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#d2f45b]" /> spliced</span>
                 <Link
                   href="/docs/getting-started/how-vexx-works"
-                  className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-white/85 backdrop-blur transition-colors hover:bg-white/20 hover:text-white"
+                  className="ml-auto inline-flex items-center gap-1 text-white/85 hover:text-white"
                 >
-                  the engine
-                  <ArrowUpRight className="h-3 w-3" />
+                  how it works <ArrowUpRight className="h-3 w-3" />
                 </Link>
               </div>
             </div>
@@ -424,12 +410,14 @@ export function Hero() {
         </div>
       </section>
 
-      {/* ================= The demo ================= */}
+      {/* the whole pitch in one screen */}
       <section className="vx-band relative bg-bg-canvas px-5 pb-10 pt-9 sm:px-9 sm:pb-12 sm:pt-11 lg:px-12">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-xl">
             <span className="vx-mono text-ink-muted">the whole pitch in one screen</span>
-            <h2 className="display-lg mt-2 text-ink-primary">Same prompt. Two universes.</h2>
+            <h2 className="display-lg mt-2 text-ink-primary">
+              Two answers. Only one <span className="vx-marker">survives review.</span>
+            </h2>
           </div>
           <p className="max-w-xs text-[13px] leading-relaxed text-ink-secondary sm:text-right">
             Flip the decoder above. One universe produces plausible nonsense; the other produces
@@ -458,13 +446,11 @@ export function Hero() {
                   {stat.unit}
                 </span>
               </p>
-              <p className="mt-1 font-mono text-[9.5px] uppercase leading-tight tracking-[0.12em] text-ink-muted">
-                {stat.label}
-              </p>
+              <p className="vx-mono mt-1 text-ink-muted">{stat.label}</p>
             </div>
           ))}
         </div>
-        <p className="mt-2.5 font-mono text-[9px] uppercase tracking-[0.12em] text-ink-muted">
+        <p className="vx-mono mt-2.5 text-ink-muted">
           measured by the repo benchmark suite · GitHub Actions runner · 605-token vocabulary
         </p>
       </section>

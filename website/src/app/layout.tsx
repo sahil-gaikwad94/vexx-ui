@@ -29,6 +29,17 @@ const plusJakarta = localFont({
   fallback: ['system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
 });
 
+const bricolage = localFont({
+  src: [
+    { path: '../../public/fonts/BricolageGrotesque-Regular.ttf', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/BricolageGrotesque-Bold.ttf', weight: '700 800', style: 'normal' },
+  ],
+  variable: '--font-bricolage',
+  display: 'swap',
+  preload: true,
+  fallback: ['var(--font-plus-jakarta)', 'system-ui', 'sans-serif'],
+});
+
 const jetbrainsMono = localFont({
   src: [
     { path: '../../public/fonts/JetBrainsMono-Latin.woff2', weight: '100 800', style: 'normal' },
@@ -101,7 +112,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} min-h-dvh bg-bg-canvas font-sans text-ink-primary antialiased`}
+        className={`${inter.variable} ${plusJakarta.variable} ${bricolage.variable} ${jetbrainsMono.variable} min-h-dvh bg-bg-canvas font-sans text-ink-primary antialiased`}
       >
         <a
           href="#main"

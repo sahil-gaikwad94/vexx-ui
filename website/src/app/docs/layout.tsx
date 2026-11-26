@@ -23,7 +23,7 @@ export default function DocsLayoutRoute({ children }: { children: ReactNode }) {
               <Zap className="h-3 w-3" /> live playground
             </span>
             <span className="text-[12.5px] font-semibold leading-snug text-ink-primary">
-              Watch a decode, break a spec
+              Watch the pieces lock together
             </span>
             <span className="text-[11px] leading-relaxed text-ink-secondary">
               Token masks, interval cuts and splices — in your browser.

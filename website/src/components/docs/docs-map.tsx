@@ -31,12 +31,20 @@ const SECTIONS: Section[] = [
     tone: 'border-cobalt-500/25 bg-cobalt-500/[0.07] text-cobalt-700 dark:text-cobalt-300',
   },
   {
+    title: 'Code engine (new in 2.1)',
+    href: '/docs/code-engine/overview',
+    pages: '5 pages',
+    blurb: 'Lexer, live callable contracts, safe CAS, sandbox diagnostics and code bridges.',
+    icon: Code2,
+    tone: 'border-accent-coral/40 bg-accent-coral/[0.14] text-[#3a2f9c] dark:text-[#d6d1ff]',
+  },
+  {
     title: 'Authoring schemas',
     href: '/docs/authoring-schemas/verified-schema-decorator',
     pages: '5 pages',
     blurb: 'The decorator, every verb and primitive, containers, preflight, synthesis.',
     icon: Braces,
-    tone: 'border-accent-violet/25 bg-accent-violet/[0.07] text-[#4b36c9] dark:text-[#b3a5ff]',
+    tone: 'border-accent-violet/30 bg-accent-violet/[0.1] text-[#4b36c9] dark:text-[#c3b9ff]',
   },
   {
     title: 'Engine internals',
@@ -52,7 +60,7 @@ const SECTIONS: Section[] = [
     pages: '9 pages',
     blurb: 'Finance, SQL, security, scheduling, statistics, physics, chemistry, code.',
     icon: Boxes,
-    tone: 'border-accent-coral/30 bg-accent-coral/[0.08] text-[#b33516] dark:text-[#ff9d7a]',
+    tone: 'border-accent-acid/40 bg-accent-acid/[0.16] text-[#3f5410] dark:text-[#d2f45b]',
   },
   {
     title: 'Proofs, RL & CLI',

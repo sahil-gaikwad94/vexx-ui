@@ -4,7 +4,7 @@
  * This is a faithful *replay* of the engine's behaviour for demonstration:
  * the portfolio arithmetic below is real (covariance → volatility → Sharpe),
  * and the token stream mirrors the order the decoder emits it in. The
- * production engine lives at github.com/sahil-gaikwad94/veritas — build
+ * production engine lives at github.com/sahil-gaikwad94/vexx — build
  * `vexx-wasm` to run the actual Rust core in this page.
  */
 
@@ -315,7 +315,7 @@ export function decodedJson(weights: Weights, stats: PortfolioStats) {
 export function buildInspectorTrace(frames: Frame[], weights: Weights, stats: PortfolioStats, ceiling: number) {
   return {
     engine: 'vexx-playground-replay',
-    version: 'vexx1.5',
+    version: 'vexx2.1',
     note: 'Deterministic replay for the browser playground. Run `vexx inspect` on a real trace for full telemetry.',
     config: { vocabulary_size: 1000, risk_ceiling: ceiling, sharpe_floor: SHARPE_FLOOR },
     values: { weights, ...stats },

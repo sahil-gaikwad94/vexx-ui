@@ -11,11 +11,21 @@ read — grammar, interval arithmetic, a small exact solver, and a final concret
 
 It is not a validator you run afterwards. The specification is inside the token loop.
 
-<Callout variant="check" title="You are reading the vexx1.5 docs">
-The audit-driven hardening release: soundness fixes first, then per-field KL receipts, a verifying
-OpenAI-compatible proxy, an LTLf MCP firewall, a minimal-relaxation wizard and RL trace export.
-[Read the release notes](/docs/release-notes) for the full, honest list — including the bugs.
+<Callout variant="check" title="You are reading the Vexx 2.1 docs">
+The standalone release: a neuro-symbolic **code engine**, per-field KL receipts, a verifying
+OpenAI-compatible proxy, an LTLf MCP firewall, `explain-unsat` and `export-rl`. Python package and
+Rust workspace are both versioned `2.1.0`.
+[Read the release notes](/docs/release-notes) for the full, honest list — including the limits.
 </Callout>
+
+## Where it runs
+
+Vexx 2.1 is the verification layer in three surfaces built at maya labs.:
+
+- **The library** — `pip install vexx-ai`, pure Python with an optional Rust accelerator.
+- **maya250M** — a 250M-parameter coding and reasoning language model with Vexx in the decode loop.
+- **MayaWorkbench** — an AI research and engineering workbench (P2C) where generated code, receipts
+  and proofs stay together in one session.
 
 <StatGrid>
   <Stat value="0.23 ms" label="JSON mask per step" tone="cobalt" />
@@ -202,7 +212,7 @@ replacement for your integration tests. Grammar support is JSON with a documente
 </FeatureGrid>
 
 <Callout variant="info" title="Version">
-This documentation describes **vexx1.5** (Apache-2.0). The package metadata ships as
+This documentation describes **vexx2.1** (Apache-2.0). The package metadata ships as
 `vexx-ai`; install from GitHub until the PyPI release lands. See
 [Installation](/docs/getting-started/installation) for exact commands.
 </Callout>

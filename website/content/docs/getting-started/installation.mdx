@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Install vexx1.5 from source, add optional extras, and confirm which engine is live with vexx doctor.
+description: Install vexx2.1 from source, add optional extras, and confirm which engine is live with vexx doctor.
 ---
 
 import { Callout, CodeBlock, FeatureGrid, Feature, KeyValueTable, Badge } from '@/components/mdx-components';
@@ -8,22 +8,22 @@ import { Callout, CodeBlock, FeatureGrid, Feature, KeyValueTable, Badge } from '
 Vexx needs **Python 3.11+**. The core package has three runtime dependencies — `pydantic>=2.0`,
 `jsonschema>=4.18` and `sqlglot>=25` — and no mandatory Rust toolchain.
 
-<Callout variant="warn" title="PyPI status">
-The distribution metadata ships as `vexx-ai`, but the release is not on PyPI yet. Install directly
-from GitHub until that changes; the commands below already use the supported path.
+<Callout variant="check" title="PyPI install">
+The distribution is published as `vexx-ai`. A pure-Python install needs no Rust toolchain; the
+optional native accelerator is built and installed separately.
 </Callout>
 
-## Install from GitHub
+## Install from PyPI
 
-<CodeBlock language="bash" title="one-line install from the main branch" code={`pip install "git+https://github.com/sahil-gaikwad94/veritas.git"
+<CodeBlock language="bash" title="one-line install" code={`pip install vexx-ai
 
 # confirm the interpreter can see it
 python -c "import vexx; print(vexx.__version__)"   # 2.1.0`} copyable />
 
 ## Editable install (recommended for development)
 
-<CodeBlock language="bash" title="clone + editable install" code={`git clone https://github.com/sahil-gaikwad94/veritas.git
-cd veritas
+<CodeBlock language="bash" title="clone + editable install" code={`git clone https://github.com/sahil-gaikwad94/vexx.git
+cd vexx
 
 python -m venv .venv
 .venv/bin/pip install -e ".[dev]"
@@ -51,11 +51,11 @@ Extras are optional by design. Add one only when a feature needs it.
   ]}
 />
 
-With a direct Git reference, a PEP 508 requirement string is the least ambiguous form:
+From PyPI, extras are plain requirement strings:
 
-<CodeBlock language="bash" title="extras from GitHub" code={`pip install "vexx-ai[z3] @ git+https://github.com/sahil-gaikwad94/veritas.git"
-pip install "vexx-ai[cas] @ git+https://github.com/sahil-gaikwad94/veritas.git"
-pip install "vexx-ai[rl] @ git+https://github.com/sahil-gaikwad94/veritas.git"`} copyable />
+<CodeBlock language="bash" title="extras from PyPI" code={`pip install "vexx-ai[z3]"
+pip install "vexx-ai[cas]"
+pip install "vexx-ai[rl]"`} copyable />
 
 Inside an editable clone, the short form works:
 
@@ -150,9 +150,9 @@ There are no C dependencies inside `vexx-core`; it uses no external crates.
 | `ModuleNotFoundError: vexx` | Installed into a different interpreter/venv | Use the same binary for `pip` and `python` (`.venv/bin/python -m pip …`) |
 | `doctor` says `reference` | Extension not built or not loadable | Expected on most machines; build it or keep using Python |
 | `--strict` exits 1 | Native extension missing | This is the documented behaviour — use it only when you require native |
-| `pip` cannot resolve `git+https` | No network / private mirror | Clone and use `pip install -e .` |
+| `pip` cannot reach the index | No network / private mirror | Clone and use `pip install -e .` |
 | Rust build fails | No toolchain | Not required: skip the accelerator and use the pure-Python engine |
-| Z3 import errors | Extra not installed | `pip install "vexx-ai[z3] @ git+…"` or use `solver="nano"` |
+| Z3 import errors | Extra not installed | `pip install "vexx-ai[z3]"` or use `solver="nano"` |
 
 More edge cases — open bounds, pattern fallbacks, numeric digit budgets — are documented on
 [Troubleshooting & limits](/docs/getting-started/troubleshooting).

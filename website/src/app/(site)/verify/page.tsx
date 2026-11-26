@@ -105,7 +105,7 @@ export default function VerifyPage() {
       </section>
 
       <p className="container-page mt-4 text-center text-[10.5px] leading-relaxed text-ink-muted">
-        The sample is a synthetic certificate in the engine's <code className="font-mono text-[11px]">vexx1.5</code> format,
+        The sample is a synthetic certificate in the engine's <code className="font-mono text-[11px]">vexx2.1</code> format,
         sealed in your browser the way <code className="font-mono text-[11px]">ProofCertificate.seal()</code> seals a real
         one. Uploads of genuine certificates work too: the page verifies every digest it can recompute and says
         plainly that replaying the embedded VIR needs the CLI.

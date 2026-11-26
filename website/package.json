@@ -1,13 +1,13 @@
 {
   "name": "vexx-website",
-  "version": "1.5.0",
+  "version": "2.1.0",
   "private": true,
   "description": "Vexx — official marketing, playground and documentation portal",
   "author": "sahil-gaikwad94",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sahil-gaikwad94/veritas"
+    "url": "https://github.com/sahil-gaikwad94/vexx"
   },
   "scripts": {
     "dev": "next dev",

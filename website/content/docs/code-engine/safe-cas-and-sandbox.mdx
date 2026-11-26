@@ -1,0 +1,40 @@
+---
+title: Safe CAS & sandbox
+description: Optional bounded symbolic mathematics and an isolated subprocess that never fakes network isolation.
+---
+
+import { Callout, CodeBlock } from '@/components/mdx-components';
+
+## Safe symbolic CAS
+
+The `.[cas]` extra adds SymPy and NumPy. The code engine wraps them in bounded helpers:
+`safe_sympy`, `crane_cas_evaluate`, `solve_linear_system`, `integrate_definite` and `modular_pow`.
+
+A base `import vexx` works without either package — CAS is optional and bounded by operation count
+and expression size, not by an in-process timeout.
+
+```python
+from vexx.cas import safe_sympy, solve_linear_system
+
+value = safe_sympy("2*x + 3", bindings={"x": 4})
+solution = solve_linear_system(["2*x + y == 7", "x - y == 2"])
+```
+
+## Subprocess sandbox
+
+`SandboxRunner` executes candidate code in a separate process. It never falls back to in-process
+`exec`, and it reports `network_isolated` **honestly**: isolation depends on the host OS and
+container, so the runner states what it could actually enforce for that run.
+
+```python
+from vexx.code_engine import SandboxRunner
+
+runner = SandboxRunner(timeout=2, max_output_bytes=8192)
+result = runner.run(source)
+print(result.network_isolated)  # True only when the host actually enforced it
+```
+
+<Callout variant="warn" title="Limits">
+CAS CPU protection uses operation and size bounds. Sandbox network isolation is host-dependent and
+reported per run rather than assumed.
+</Callout>

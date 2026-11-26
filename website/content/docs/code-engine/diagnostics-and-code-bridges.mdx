@@ -1,0 +1,51 @@
+---
+title: Diagnostics & code bridges
+description: Statistical, dimensional and epistemic checks, plus the Hugging Face code logits processor.
+---
+
+import { Callout, CodeBlock } from '@/components/mdx-components';
+
+## Diagnostics
+
+`verify_statistical_report`, `verify_epistemic_calibration` and `parse_unit_dimensions` check the
+claims a generated analysis makes about its own data:
+
+- **GRIM** compares reported statistics against the rounding interval implied by printed precision
+  (corrected in 2.1).
+- **Student-t** is used when available; `z` is two-sided only when the report declares it.
+- **Units** are parsed and checked dimensionally, so an equation that cannot type-check is rejected.
+
+Diagnostics return `UNKNOWN` when the evidence is insufficient — never a quiet `PASS`.
+
+```python
+from vexx.calibration import verify_statistical_report
+
+report = verify_statistical_report(
+    n=40, mean=12.4, sd=3.1, printed_precision=2, claimed_p=0.03
+)
+print(report.status)  # PASS / FAIL / UNKNOWN
+```
+
+## Experiments, consensus and RL rewards
+
+`ExperimentEpisode` groups multi-cell experiments with bounded preambles. `select_candidate` picks
+by empirical consensus across candidates, `fuzz_against_oracle` runs differential checks, and the
+RLVR reward path exports DPO pairs atomically. These rewards are useful, but they are **not** claimed
+to be reward-hacking-proof.
+
+## Hugging Face bridge
+
+`VexxCodeLogitsProcessor` attaches the code mask to a HF generation call. It accepts lists, NumPy
+arrays and torch tensors, and it works with the same lexer state the local controller uses.
+
+```python
+from vexx.bridges.code_hf import VexxCodeLogitsProcessor
+
+processor = VexxCodeLogitsProcessor(controller=controller, tokenizer=tokenizer)
+output = model.generate(**inputs, logits_processor=[processor])
+```
+
+<Callout variant="check" title="Related">
+For JSON decoding, see [engine internals](/docs/engine-internals/vir-compiler-and-dag). For trace
+export, see [RL trajectory collector](/docs/proofs-rl-and-cli/rl-trajectory-collector).
+</Callout>

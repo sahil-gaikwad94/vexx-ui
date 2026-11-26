@@ -147,7 +147,7 @@ export function HeroDemo() {
           <div className="relative min-w-0 border-b border-white/10 p-3.5 sm:p-4 lg:border-b-0 lg:border-r">
             <div className="mb-2 flex items-center justify-between font-mono text-[9.5px] uppercase tracking-[0.14em] text-slate-400">
               <span>compiled spec</span>
-              <span className="text-slate-400">VIR · vexx1.5</span>
+              <span className="text-slate-400">VIR · vexx2.1</span>
             </div>
             <div
               tabIndex={0}

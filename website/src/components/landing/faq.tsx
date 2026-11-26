@@ -3,6 +3,7 @@
 import * as Accordion from '@radix-ui/react-accordion';
 import { Plus } from 'lucide-react';
 import { faqs } from '@/lib/site';
+import { jsonLdPayload } from '@/lib/utils';
 import { SectionHeading } from '@/components/site/section';
 
 export function Faq() {
@@ -49,7 +50,7 @@ export function Faq() {
         </div>
       </div>
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdPayload(jsonLd) }} />
     </section>
   );
 }

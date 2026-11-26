@@ -1,69 +1,75 @@
 /* ==========================================================================
-   VEXX 1.5 — "Cobalt Studio Sheet"
-   A single electric-cobalt field with one floating alabaster sheet, ribbed
-   glass optics, and printed micro-typography. Discipline over decoration:
-   cobalt + paper + ink, with emerald reserved for verified states.
+   VEXX 2.1 — "Interlocking Proof"
+   Warm paper + one electric cobalt field + obsidian dot field.
+   Stipple is the material of tokens and proofs; interlocking is verification.
+   Derived from the three reference directions: cropped particle sculpture,
+   pixel-wave dot field, and the thick framed editorial card.
    ========================================================================== */
 
 html:root {
-  --vx-field-deep: #10249b;
-  --vx-field: #2447dd;
-  --vx-field-light: #5a83ff;
-  --vx-field-edge: #1630b8;
-  --vx-sheet: #fcfcfb;
-  --vx-wash: #f1f4fa;
-  --vx-hair: rgba(16, 17, 23, 0.09);
-  --vx-ink: #101117;
+  /* brand surfaces */
+  --vx-field-deep: #1024a8;
+  --vx-field: #2145ff;
+  --vx-field-light: #7ea3ff;
+  --vx-field-edge: #142fa8;
+  --vx-sheet: #ffffff;
+  --vx-wash: #f3f1ea;
+  --vx-paper: #f3f1ea;
+  --vx-night: #0b0c11;
+  --vx-lilac: #bdb9ff;
+  --vx-lime: #d2f45b;
+  --vx-hair: rgba(22, 23, 27, 0.1);
+  --vx-ink: #16171b;
 
-  --vt-canvas: #f7f7f5;
+  --vt-canvas: #f3f1ea;
   --vt-elevated: #ffffff;
-  --vt-subtle: #eef2f9;
-  --vt-inset: #f1f4fa;
-  --vt-ink: #101117;
-  --vt-ink-2: #525a6a;
-  --vt-ink-3: #7f8798;
-  --vt-border: rgba(16, 17, 23, 0.09);
-  --vt-border-strong: rgba(16, 17, 23, 0.17);
-  --vt-border-cobalt: rgba(36, 71, 221, 0.3);
-  --vt-ghost: rgba(16, 17, 23, 0.045);
-  --vt-glow-1: rgba(36, 71, 221, 0.18);
-  --vt-glow-2: rgba(90, 131, 255, 0.2);
-  --vt-shadow-card: 0 1px 2px rgba(16, 17, 23, 0.04), 0 20px 44px -30px rgba(13, 23, 62, 0.28);
-  --vt-shadow-lift: 0 2px 6px rgba(16, 17, 23, 0.05), 0 34px 70px -34px rgba(13, 23, 62, 0.34);
-  --vt-shadow-cobalt: 0 18px 40px -18px rgba(36, 71, 221, 0.48);
+  --vt-subtle: #eceae1;
+  --vt-inset: #f6f5f0;
+  --vt-ink: #16171b;
+  --vt-ink-2: #555b67;
+  --vt-ink-3: #858b97;
+  --vt-border: rgba(22, 23, 27, 0.1);
+  --vt-border-strong: rgba(22, 23, 27, 0.18);
+  --vt-border-cobalt: rgba(33, 69, 255, 0.3);
+  --vt-ghost: rgba(22, 23, 27, 0.045);
+  --vt-glow-1: rgba(33, 69, 255, 0.16);
+  --vt-glow-2: rgba(189, 185, 255, 0.32);
+  --vt-shadow-card: 0 1px 2px rgba(22, 23, 27, 0.04), 0 24px 56px -36px rgba(22, 23, 27, 0.32);
+  --vt-shadow-lift: 0 2px 6px rgba(22, 23, 27, 0.05), 0 34px 70px -34px rgba(22, 23, 27, 0.36);
+  --vt-shadow-cobalt: 0 18px 40px -18px rgba(33, 69, 255, 0.5);
 }
 
 html.dark {
-  --vx-field-deep: #050a26;
-  --vx-field: #0b1a63;
-  --vx-field-light: #2b4fd6;
-  --vx-field-edge: #04081c;
-  --vx-sheet: #0d1018;
-  --vx-wash: #10141e;
-  --vx-hair: rgba(255, 255, 255, 0.1);
-  --vx-ink: #f5f7fc;
+  --vx-field-deep: #07154f;
+  --vx-field: #1733c9;
+  --vx-field-light: #4f78ff;
+  --vx-field-edge: #060c2c;
+  --vx-sheet: #151822;
+  --vx-wash: #0f111a;
+  --vx-paper: #0b0c11;
+  --vx-hair: rgba(255, 255, 255, 0.11);
+  --vx-ink: #f5f6fa;
 
-  --vt-canvas: #0d1018;
-  --vt-elevated: #131824;
-  --vt-subtle: #121723;
-  --vt-inset: #10141e;
-  --vt-ink: #f5f7fc;
-  --vt-ink-2: #a7b2c7;
-  --vt-ink-3: #7d89a0;
-  --vt-border: rgba(255, 255, 255, 0.1);
-  --vt-border-strong: rgba(255, 255, 255, 0.18);
-  --vt-border-cobalt: rgba(110, 150, 255, 0.36);
+  --vt-canvas: #0b0c11;
+  --vt-elevated: #151822;
+  --vt-subtle: #1a1e2a;
+  --vt-inset: #101219;
+  --vt-ink: #f5f6fa;
+  --vt-ink-2: #aab3c4;
+  --vt-ink-3: #818b9e;
+  --vt-border: rgba(255, 255, 255, 0.11);
+  --vt-border-strong: rgba(255, 255, 255, 0.2);
+  --vt-border-cobalt: rgba(126, 163, 255, 0.36);
   --vt-ghost: rgba(255, 255, 255, 0.05);
-  --vt-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 44px -28px rgba(0, 0, 0, 0.8);
+  --vt-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 24px 56px -34px rgba(0, 0, 0, 0.85);
   --vt-shadow-lift: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 34px 70px -30px rgba(0, 0, 0, 0.9);
 }
 
-/* Only the marketing shell sits on the cobalt field; docs stay on paper. */
+/* ---- Marketing shell ---------------------------------------------------- */
+
 .vx-shell {
   background-color: var(--vx-field-edge);
 }
-
-/* ---- The field ---------------------------------------------------------- */
 
 .vx-field {
   position: fixed;
@@ -72,49 +78,44 @@ html.dark {
   overflow: hidden;
   pointer-events: none;
   background:
-    radial-gradient(75% 55% at 16% -8%, #7a9dff 0%, rgba(122, 157, 255, 0) 58%),
-    radial-gradient(70% 50% at 86% 2%, #86a6ff 0%, rgba(134, 166, 255, 0) 54%),
-    radial-gradient(80% 60% at 52% 112%, #10249b 0%, rgba(16, 36, 155, 0) 64%),
-    linear-gradient(158deg, var(--vx-field) 0%, #2c53ea 46%, var(--vx-field-edge) 100%);
+    radial-gradient(64% 44% at 14% -6%, rgba(189, 185, 255, 0.45) 0%, transparent 60%),
+    radial-gradient(58% 40% at 88% 4%, rgba(126, 163, 255, 0.35) 0%, transparent 58%),
+    radial-gradient(70% 48% at 50% 112%, rgba(5, 19, 110, 0.8) 0%, transparent 68%),
+    linear-gradient(158deg, var(--vx-field) 0%, #2a4ef5 46%, var(--vx-field-edge) 100%);
 }
 
-/* out-of-focus light columns, like a studio softbox just off-frame */
 .vx-field__streaks {
   position: absolute;
-  inset: -10% -6%;
-  background-image:
-    linear-gradient(90deg, transparent 0 6%, rgba(255, 255, 255, 0.5) 6.6%, rgba(255, 255, 255, 0.06) 12%, transparent 17%),
-    linear-gradient(90deg, transparent 0 57%, rgba(255, 255, 255, 0.42) 58%, rgba(255, 255, 255, 0.04) 64%, transparent 70%),
-    linear-gradient(90deg, transparent 0 82%, rgba(255, 255, 255, 0.32) 83%, transparent 92%);
-  filter: blur(42px);
-  opacity: 0.55;
+  inset: 0;
+  opacity: 0.4;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.45) 0.8px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 62%);
+  mask-image: linear-gradient(to bottom, #000, transparent 62%);
 }
 
 .vx-field__glow {
   position: absolute;
   left: 50%;
-  top: -34vh;
-  height: 70vh;
-  width: 130%;
+  top: -30vh;
+  height: 66vh;
+  width: 120%;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 62%);
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.32), transparent 62%);
   filter: blur(60px);
-  opacity: 0.4;
 }
 
 html.dark .vx-field {
   background:
-    radial-gradient(70% 50% at 18% -8%, #2b4fd6 0%, rgba(43, 79, 214, 0) 58%),
-    radial-gradient(70% 50% at 84% 2%, #2440b4 0%, rgba(36, 64, 180, 0) 55%),
-    linear-gradient(160deg, #0a1650 0%, #08102f 52%, #04081c 100%);
+    radial-gradient(60% 40% at 16% -8%, rgba(79, 120, 255, 0.5) 0%, transparent 58%),
+    radial-gradient(64% 44% at 84% 0%, rgba(189, 185, 255, 0.22) 0%, transparent 55%),
+    linear-gradient(160deg, #0f2588 0%, #09154f 54%, var(--vx-field-edge) 100%);
 }
 
 html.dark .vx-field__streaks,
 html.dark .vx-field__glow {
   opacity: 0.16;
 }
-
-/* ---- The sheet ---------------------------------------------------------- */
 
 .vx-sheet {
   position: relative;
@@ -124,8 +125,8 @@ html.dark .vx-field__glow {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.7),
     inset 0 0 0 1px rgba(255, 255, 255, 0.4),
-    0 2px 4px rgba(6, 14, 56, 0.12),
-    0 70px 140px -60px rgba(4, 12, 50, 0.85);
+    0 2px 4px rgba(6, 14, 56, 0.1),
+    0 70px 140px -60px rgba(4, 12, 50, 0.8);
   isolation: isolate;
 }
 
@@ -138,122 +139,69 @@ html.dark .vx-sheet {
 
 @media (min-width: 768px) {
   .vx-sheet {
-    border-radius: 36px;
+    border-radius: 38px;
   }
 }
 
-/* ---- Fluted cobalt orb -------------------------------------------------- */
+/* ---- Retired orb: now a cropped stipple interlock ------------------------ */
 
 .vx-orb-panel {
   position: relative;
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(circle at 50% 60%, #1b3fd8 0%, #0c25a4 58%, #061568 100%);
+    radial-gradient(circle at 46% 42%, #1b41e6 0%, #1024a8 58%, #081461 100%);
 }
 
 .vx-orb {
   position: absolute;
-  inset: -18%;
-  background:
-    radial-gradient(circle at 52% 44%, #f2f7ff 0%, #c3d7ff 5%, #86acff 11%, #4877ff 23%, #1a41e2 41%, #0a2296 61%, #050f57 86%);
-  filter: blur(8px);
-  animation: vx-orb-breathe 18s ease-in-out infinite;
+  inset: 0;
+  opacity: 0.95;
+  background-image: url('/art/interlock-hero.svg');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  animation: vx-orb-breathe 22s ease-in-out infinite;
 }
 
 .vx-orb::after {
   content: "";
   position: absolute;
-  left: 34%;
-  top: 22%;
-  width: 34%;
-  height: 40%;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 70%);
-  filter: blur(24px);
-}
-
-/* vertical fluted glass: thin specular ridges + translucent panels */
-.vx-flutes {
-  position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0px,
-    rgba(255, 255, 255, 0.12) 26px,
-    rgba(255, 255, 255, 0.62) 31px,
-    rgba(255, 255, 255, 0.1) 35px,
-    rgba(9, 22, 84, 0.16) 55px,
-    rgba(9, 22, 84, 0.34) 61px,
-    rgba(255, 255, 255, 0.34) 65px,
-    rgba(255, 255, 255, 0) 88px
-  );
-  background-size: 88px 100%;
-  mix-blend-mode: overlay;
-  opacity: 0.9;
+  background: linear-gradient(to bottom, rgba(18, 42, 170, 0.14), transparent 22%, rgba(5, 17, 90, 0.28) 48%, rgba(4, 12, 62, 0.92) 100%);
 }
 
-.vx-flutes--soft {
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.2) 0px,
-    rgba(255, 255, 255, 0.02) 30px,
-    rgba(4, 14, 62, 0.18) 58px,
-    rgba(255, 255, 255, 0.3) 66px
-  );
-  background-size: 88px 100%;
-  filter: blur(3px);
-  opacity: 0.5;
-}
-
+.vx-flutes,
+.vx-flutes--soft,
 .vx-flutes-sheen {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.34) 38%,
-    rgba(255, 255, 255, 0.1) 46%,
-    transparent 62%
-  );
-  mix-blend-mode: screen;
-  opacity: 0.5;
-  animation: vx-sheen 16s ease-in-out infinite;
+  display: none;
 }
 
 .vx-orb-word {
   position: relative;
   font-family: var(--font-display);
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.13em;
-  font-size: clamp(2.7rem, 5.4vw, 5rem);
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.94);
-  text-shadow:
-    0 2px 40px rgba(11, 27, 120, 0.55),
-    0 1px 0 rgba(255, 255, 255, 0.4);
-  text-indent: 0.13em;
+  letter-spacing: -0.04em;
+  font-size: clamp(3rem, 7vw, 6.4rem);
+  line-height: 0.96;
+  color: rgba(255, 255, 255, 0.96);
+  text-shadow: 0 2px 40px rgba(11, 27, 120, 0.55);
 }
 
 .vx-orb-label {
   position: absolute;
   font-family: var(--font-mono);
-  font-size: 9.5px;
+  font-size: 10px;
   line-height: 1.5;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.82);
-  text-shadow: 0 1px 12px rgba(6, 16, 64, 0.6);
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .vx-orb-label b {
   display: block;
   font-family: var(--font-display);
-  font-size: 12px;
-  letter-spacing: 0.02em;
+  font-size: 13px;
+  letter-spacing: -0.01em;
   color: #fff;
 }
 
@@ -262,27 +210,25 @@ html.dark .vx-sheet {
 .vx-display {
   font-family: var(--font-display);
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.045em;
-  line-height: 0.92;
-  font-size: clamp(2.55rem, 5.6vw, 4.35rem);
+  letter-spacing: -0.042em;
+  line-height: 1.02;
+  font-size: clamp(2.6rem, 5.9vw, 4.6rem);
   text-wrap: balance;
 }
 
 .vx-display-sm {
   font-family: var(--font-display);
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
+  letter-spacing: -0.032em;
+  line-height: 1.06;
 }
 
 .vx-mono {
   font-family: var(--font-mono);
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-transform: none;
 }
 
 .vx-dot {
@@ -299,13 +245,34 @@ html.dark .vx-sheet {
   background: var(--vx-hair);
 }
 
+/* Signature highlighter swipe — used on one or two words per headline */
+.vx-marker {
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0.04em 0.16em 0.1em;
+  border-radius: 0.28em;
+  background: var(--vx-lilac);
+  color: #16171b;
+}
+
+.vx-marker--lime {
+  background: var(--vx-lime);
+}
+
+.vx-marker--outline {
+  background: transparent;
+  box-shadow: inset 0 -0.09em 0 var(--vx-field-light);
+  color: inherit;
+}
+
 /* ---- Buttons ------------------------------------------------------------ */
 
 .vx-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   border-radius: 999px;
   font-size: 13.5px;
   font-weight: 600;
@@ -327,46 +294,36 @@ html.dark .vx-sheet {
 }
 
 .vx-btn-dark {
-  background: #101117;
+  background: #16171b;
   color: #fff;
-  border: 1px solid #101117;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    0 10px 24px -14px rgba(16, 17, 23, 0.8);
+  border: 1px solid #16171b;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 10px 24px -14px rgba(16, 17, 23, 0.8);
 }
 
 .vx-btn-dark:hover {
-  background: #1c1e28;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 18px 34px -16px rgba(16, 17, 23, 0.75);
+  background: #292c36;
 }
 
 .vx-btn-light {
   background: #fff;
   color: var(--vx-ink);
-  border: 1px solid rgba(16, 17, 23, 0.12);
-  box-shadow:
-    0 1px 2px rgba(16, 17, 23, 0.05),
-    0 12px 26px -18px rgba(16, 17, 23, 0.45);
+  border: 1px solid rgba(22, 23, 27, 0.12);
+  box-shadow: 0 1px 2px rgba(16, 17, 23, 0.05), 0 12px 26px -18px rgba(16, 17, 23, 0.45);
 }
 
 .vx-btn-light:hover {
-  border-color: rgba(36, 71, 221, 0.4);
+  border-color: rgba(33, 69, 255, 0.4);
 }
 
-/* --vx-ink flips to near-white in dark mode, which would render this white
-   button white-on-white. Give the sheet its own dark secondary treatment. */
 html.dark .vx-btn-light {
   background: rgba(255, 255, 255, 0.08);
-  color: #f5f7fc;
+  color: #f5f6fa;
   border-color: rgba(255, 255, 255, 0.24);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 html.dark .vx-btn-light:hover {
   background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.34);
 }
 
 .vx-btn-field {
@@ -385,15 +342,14 @@ html.dark .vx-btn-light:hover {
 .vx-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   border-radius: 999px;
   border: 1px solid var(--vt-border);
-  background: rgba(255, 255, 255, 0.7);
-  padding: 0.34rem 0.7rem;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0.36rem 0.75rem;
   font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.04em;
   color: var(--vt-ink-2);
   backdrop-filter: blur(12px);
 }
@@ -402,40 +358,32 @@ html.dark .vx-chip {
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* ---- Inverted island (code, receipts, loud moments) --------------------- */
+/* ---- Inverted islands --------------------------------------------------- */
 
 .vx-ink-island {
   border-radius: 24px;
   background:
-    radial-gradient(120% 100% at 82% 0%, rgba(59, 107, 255, 0.3) 0%, rgba(10, 14, 26, 0) 58%),
-    linear-gradient(165deg, #141824 0%, #0a0c14 62%, #07090f 100%);
+    radial-gradient(120% 100% at 82% 0%, rgba(33, 69, 255, 0.28) 0%, rgba(11, 12, 17, 0) 58%),
+    linear-gradient(165deg, #151822 0%, #0d0f16 62%, #0b0c11 100%);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 30px 70px -40px rgba(4, 10, 40, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 30px 70px -40px rgba(4, 10, 40, 0.9);
   color: #e8edf7;
 }
 
 .vx-cobalt-island {
   border-radius: 24px;
   background:
-    radial-gradient(100% 120% at 78% 8%, #4f7cff 0%, rgba(79, 124, 255, 0) 60%),
-    linear-gradient(150deg, #1230b4 0%, #2347dd 52%, #0e238f 100%);
+    radial-gradient(100% 120% at 78% 8%, #7ea3ff 0%, rgba(126, 163, 255, 0) 60%),
+    linear-gradient(150deg, #1733c9 0%, #2145ff 52%, #0e238f 100%);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    0 30px 70px -40px rgba(6, 16, 70, 0.8);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 30px 70px -40px rgba(6, 16, 70, 0.8);
 }
 
 /* ---- Navigation --------------------------------------------------------- */
 
 .vx-nav {
-  transition:
-    background-color 300ms ease,
-    border-color 300ms ease,
-    box-shadow 300ms ease,
-    padding 300ms ease;
+  transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
 
 .vx-nav--top {
@@ -446,12 +394,10 @@ html.dark .vx-chip {
 }
 
 .vx-nav--solid {
-  background: rgba(13, 15, 22, 0.86);
+  background: rgba(11, 12, 17, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(22px) saturate(160%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 22px 46px -24px rgba(4, 12, 50, 0.7);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 22px 46px -24px rgba(4, 12, 50, 0.7);
 }
 
 /* ---- Footer ------------------------------------------------------------- */
@@ -461,17 +407,28 @@ html.dark .vx-chip {
   z-index: 10;
   color: #fff;
   overflow: hidden;
+  background: var(--vx-night);
+}
+
+.vx-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(189, 185, 255, 0.22) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 70%);
+  mask-image: linear-gradient(to bottom, #000, transparent 70%);
 }
 
 .vx-footer-word {
   font-family: var(--font-display);
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  line-height: 0.72;
+  letter-spacing: -0.05em;
+  line-height: 0.76;
   font-size: clamp(4.5rem, 17vw, 15rem);
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.26);
+  -webkit-text-stroke: 1px rgba(189, 185, 255, 0.3);
   user-select: none;
   pointer-events: none;
 }
@@ -479,58 +436,23 @@ html.dark .vx-chip {
 /* ---- Motion ------------------------------------------------------------- */
 
 @keyframes vx-orb-breathe {
-  0%,
-  100% {
-    transform: scale(1) translate3d(0, 0, 0);
-  }
-  50% {
-    transform: scale(1.06) translate3d(1.5%, -1.5%, 0);
-  }
-}
-
-@keyframes vx-sheen {
-  0%,
-  100% {
-    transform: translateX(-18%);
-    opacity: 0.25;
-  }
-  50% {
-    transform: translateX(18%);
-    opacity: 0.55;
-  }
+  0%, 100% { transform: scale(1) translate3d(0, 0, 0); }
+  50% { transform: scale(1.025) translate3d(0.6%, -0.8%, 0); }
 }
 
 @keyframes vx-rise {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.vx-rise {
-  animation: vx-rise 0.7s var(--ease-out-expo) both;
-}
-
-.vx-rise-1 {
-  animation-delay: 0.06s;
-}
-.vx-rise-2 {
-  animation-delay: 0.14s;
-}
-.vx-rise-3 {
-  animation-delay: 0.22s;
-}
+.vx-rise { animation: vx-rise 0.7s var(--ease-out-expo) both; }
+.vx-rise-1 { animation-delay: 0.06s; }
+.vx-rise-2 { animation-delay: 0.14s; }
+.vx-rise-3 { animation-delay: 0.22s; }
 
 @media (prefers-reduced-motion: reduce) {
   .vx-orb,
-  .vx-flutes-sheen,
-  .vx-rise {
-    animation: none !important;
-  }
+  .vx-rise { animation: none !important; }
 }
 
 /* ---- Section rhythm inside the sheet ----------------------------------- */
@@ -547,40 +469,114 @@ html.dark .vx-chip {
   box-shadow: inset 0 1px 0 var(--vx-hair);
 }
 
-/* Docs chrome: keep the reader on paper, the letterhead on cobalt */
+/* ---- Signature surfaces ------------------------------------------------- */
+
+/* Dot field used by the dark proof/benchmark moment */
+.vx-dot-field {
+  position: relative;
+  isolation: isolate;
+  background: var(--vx-night);
+  color: #f5f6fa;
+}
+
+.vx-dot-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(189, 185, 255, 0.32) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(120% 120% at 50% 10%, #000 10%, transparent 78%);
+  mask-image: radial-gradient(120% 120% at 50% 10%, #000 10%, transparent 78%);
+}
+
+/* Pixel-wave masses that rise from the lower corners */
+.vx-pixel-wave {
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0.9;
+  background-image: radial-gradient(circle, currentColor 1.4px, transparent 1.5px);
+  background-size: 14px 14px;
+  -webkit-mask-image: radial-gradient(110% 100% at 20% 100%, #000 0%, transparent 68%);
+  mask-image: radial-gradient(110% 100% at 20% 100%, #000 0%, transparent 68%);
+}
+
+/* The framed editorial card from reference 3 */
+.vx-frame-card {
+  position: relative;
+  border-radius: 34px;
+  border: 1px solid var(--vt-border);
+  background: var(--vt-elevated);
+  box-shadow: 0 2px 4px rgba(22, 23, 27, 0.03), 0 40px 80px -56px rgba(22, 23, 27, 0.42);
+  overflow: hidden;
+}
+
+/* The tactile puzzle-piece switch inside a headline */
+.vx-piece-switch {
+  position: relative;
+  display: inline-flex;
+  width: 1.55em;
+  height: 0.74em;
+  padding: 0.07em;
+  border-radius: 999px;
+  vertical-align: -0.06em;
+  margin-inline: 0.12em;
+  cursor: pointer;
+  transition: background 320ms var(--ease-spring), box-shadow 320ms var(--ease-spring);
+}
+
+.vx-piece-switch::after {
+  content: "";
+  position: absolute;
+  right: -0.12em;
+  top: 50%;
+  width: 0.22em;
+  height: 0.22em;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.vx-piece-knob {
+  position: relative;
+  display: block;
+  height: 0.6em;
+  width: 0.6em;
+  border-radius: 0.24em;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(4, 12, 60, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: transform 420ms var(--ease-spring), border-radius 420ms var(--ease-spring);
+}
+
+/* ---- Docs chrome -------------------------------------------------------- */
+
 .vx-docs-shell {
   background: var(--vx-sheet);
 }
 
 header.doc-hero {
   background:
-    radial-gradient(120% 150% at 88% 4%, rgba(255, 255, 255, 0.28), transparent 52%),
-    radial-gradient(90% 100% at 4% 100%, rgba(90, 131, 255, 0.55), transparent 58%),
-    linear-gradient(126deg, #10249b 0%, #2347dd 46%, #3d69ff 82%, #5a83ff 100%);
-  border-color: rgba(255, 255, 255, 0.22);
+    radial-gradient(110% 140% at 86% 0%, rgba(255, 255, 255, 0.4), transparent 50%),
+    radial-gradient(90% 100% at 4% 100%, rgba(189, 185, 255, 0.55), transparent 58%),
+    linear-gradient(126deg, #1733c9 0%, #2145ff 48%, #7ea3ff 100%);
+  border-color: rgba(255, 255, 255, 0.24);
 }
 
 header.doc-hero .doc-hero-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.22) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
 header.doc-hero .doc-hero-flutes {
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.42) 0 2px,
-    rgba(255, 255, 255, 0.04) 3px 17px,
-    rgba(6, 16, 64, 0.2) 34px 44px,
-    rgba(255, 255, 255, 0.24) 46px 48px,
-    rgba(255, 255, 255, 0) 50px 62px
-  );
+  display: none;
 }
 
 header.doc-hero .doc-meta-chip {
   border-color: rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.14);
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 header.doc-hero .doc-meta-chip:hover {
@@ -588,8 +584,6 @@ header.doc-hero .doc-meta-chip:hover {
   color: #fff;
 }
 
-/* Code lines are unbreakable, so the block itself must scroll instead of
-   pushing the whole document wider than the phone viewport. */
 body #nd-page .prose pre {
   overflow-x: auto;
   max-width: 100%;
@@ -603,29 +597,22 @@ body #nd-page .prose table {
 }
 
 body #nd-page h1::after {
-  background: linear-gradient(90deg, #0047ff 0%, #2347dd 55%, #5a83ff 100%);
+  background: linear-gradient(90deg, #2145ff 0%, #bdb9ff 100%);
 }
 
 body #nd-page .docs-sheet .prose :where(h2)::before {
-  background: linear-gradient(180deg, #2347dd 0%, #5a83ff 100%);
+  background: linear-gradient(180deg, #2145ff 0%, #bdb9ff 100%);
 }
 
 body #nd-toc a[data-active='true'] > div {
-  background: linear-gradient(180deg, #2347dd, #5a83ff);
+  background: linear-gradient(180deg, #2145ff, #bdb9ff);
   width: 2px;
 }
 
-/* One loud cobalt card, in place of the old orange field */
 article.pixel-field {
-  background-color: #2347dd;
+  background-color: #1733c9;
   background-image:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    radial-gradient(90% 120% at 82% 12%, #7ba2ff 0%, #3d69ff 34%, #1230b4 74%, #0a1d7e 100%);
-  background-size: 34px 34px, 34px 34px, 100% 100%;
-}
-
-.pixel-field::after {
-  background: radial-gradient(90% 90% at 80% 20%, rgba(255, 255, 255, 0.42), transparent 58%);
-  mix-blend-mode: soft-light;
+    radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    radial-gradient(90% 120% at 82% 12%, #7ea3ff 0%, #3d69ff 34%, #1230b4 74%, #0a1d7e 100%);
+  background-size: 22px 22px, 100% 100%;
 }

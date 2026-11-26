@@ -5,14 +5,14 @@ import { Check, Copy, Terminal } from 'lucide-react';
 import { copyText } from '@/components/site/copy-command';
 import { cn } from '@/lib/utils';
 
-// Every transcript below was captured from `python -m vexx` on vexx1.5
+// Every transcript below was captured from `python -m vexx` on vexx2.1
 // reference engine (CPython 3.11, no native wheel installed). Keep them verbatim.
 const commands = [
   {
     id: 'doctor',
     cmd: 'vexx doctor',
     label: 'doctor',
-    output: `vexx1.5 on CPython 3.11.2
+    output: `vexx2.1 on CPython 3.11.2
   engine    reference python
   reason    ModuleNotFoundError: No module named 'vexx_py'
   wire      n/a
@@ -42,7 +42,7 @@ const commands = [
     cmd: 'vexx verify-proof ticket_proof.json',
     label: 'verify-proof',
     output: `certificate: VALID
-  [ok] version: found 'vexx1.5', expected 'vexx1.5'
+  [ok] version: found 'vexx2.1', expected 'vexx2.1'
   [ok] sha256: content digest matches
   [ok] witness_sha256: witness digest matches
   [ok] smt2: SMT-LIB2 script present

@@ -55,7 +55,7 @@ void initWasm();
 
 function stubResponse(method: string, data: any): any {
   // Deterministic stub responses for UI development without WASM
-  if (method === 'version') return 'vexx1.5-stub';
+  if (method === 'version') return 'vexx2.1-stub';
   if (method === 'prefix_status') {
     return { valid: true, depth: 0, complete: false };
   }
@@ -89,7 +89,7 @@ self.onmessage = async (e: MessageEvent) => {
       // Real WASM calls
       switch (method) {
         case 'version':
-          result = vexxWasm.version?.() || 'vexx1.5';
+          result = vexxWasm.version?.() || 'vexx2.1';
           break;
         case 'prefix_status':
           result = vexxWasm.prefix_status?.(args[0]) || {

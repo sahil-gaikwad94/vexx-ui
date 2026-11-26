@@ -44,6 +44,7 @@ export function SiteHeader() {
               <span className="font-display text-[15px] font-extrabold leading-none tracking-[-0.03em] text-white">
                 vexx
               </span>
+              <span className="hidden font-mono text-[9px] text-white/45 lg:inline">by maya labs.</span>
             </Link>
             <span className="hidden rounded-full border border-white/20 bg-white/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.1em] text-white/75 lg:inline-block">
               {siteConfig.version}
@@ -86,7 +87,7 @@ export function SiteHeader() {
             </span>
             <Link
               href="/docs/getting-started/installation"
-              className="hidden items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[12.5px] font-semibold text-[#101117] transition-transform hover:-translate-y-0.5 md:inline-flex"
+              className="hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-white px-4 py-2 text-[12.5px] font-semibold text-[#101117] transition-transform hover:-translate-y-0.5 md:inline-flex"
             >
               Get started
               <ArrowRight className="h-3.5 w-3.5" />

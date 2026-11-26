@@ -1,146 +1,95 @@
 ---
-title: Vexx 1.5 release notes
-description: What actually shipped in vexx1.5 — the soundness fixes, per-field KL receipts, the MCP firewall, the verifying proxy, explain-unsat, RL export, and a faster native core.
+title: Vexx 2.1 release notes
+description: What shipped in Vexx 2.1 — the standalone neuro-symbolic code engine, KL receipts, the MCP firewall, explain-unsat, export-rl, the verifying proxy and the honest limits.
 ---
 
 import { Callout } from '@/components/mdx-components';
 
-**vexx1.5 is the audit-driven hardening release.** Every bug, unsoundness and missing capability
-found in the `vexx1.1` audit was fixed first, then the next horizon of usability was built on top of
-it. The Python distribution continues its own numbering (`2.1.0`); the public milestone name is
-**vexx1.5**.
+**Vexx 2.1 is the standalone release.** It ports the newer neuro-symbolic code engine — previously
+embedded in Maya250M as "Vexx 3.5" — into the standalone Vexx repository, with additional hardening
+and corrections. Maya250M was a source of features, not a runtime dependency.
 
-If you only read one line: **the verifier got stricter, the decoder got faster, and the surrounding
-tooling went from "a library" to "a system".**
+Version alignment is exact: the Python package and the Rust workspace are both **2.1.0**. The 1.5
+history is kept in the repository's `docs/1.5-release.md`.
 
-## Phase 0 — soundness regressions fixed
+Vexx 2.1 is also integrated into two maya labs. products: **maya250M**, a small language model for
+coding and reasoning, and **MayaWorkbench**, an AI research and engineering workbench for P2C
+workflows. The library remains standalone; those integrations are consumers of it, not dependencies.
 
-These are the entries that matter most, because a verifier that is subtly wrong is worse than no
-verifier at all.
+If you only read one line: **the library now verifies generated code as well as generated JSON, and
+every result can explain how much the constraints changed the model's distribution.**
 
-- **`quad_form_split` was mathematically unsound.** It registered two sign-flipped PSD constraints,
-  which are impossible over the reals, so it refuted every feasible box and produced false `UNSAT`
-  verdicts. It now encodes the difference-of-convex form `||L₊ᵀx||² − ||L₋ᵀx||² ≤ rhs` using only
-  sound interval arithmetic, with a forward check and a DC relaxation. `evaluate.py` and the SMT
-  certificate renderer now handle the constraint too instead of returning `INCOMPLETE`.
-- **The quadratic contraction was computed against `Lx` instead of `Lᵀx`** — the wrong quadratic form
-  entirely — in both Python and Rust. Fixed, with a regression test.
-- **The Rust Eq-quadratic import sample could exclude genuinely feasible assignments.** The
-  "narrow to the sampled window" shortcut is gone; the Rust revision is a pure outward-rounded
-  forward check.
-- **`eigendecomposition_split` hard-imported NumPy.** Replaced with a dependency-free cyclic Jacobi
-  eigensolver, so the split works with no optional extras installed.
-- **`\b` and `\B` raised `UnsupportedPattern`.** Word boundaries are legal masking. They are now
-  zero-width conditional edges resolved against the neighbouring character, verified exact against
-  `re.search` on exhaustive small-alphabet inputs.
-- **Kohler's pruning in the Fourier–Motzkin solvers could flip `UNSAT` to `SAT`/`UNKNOWN`.** An
-  8-row infeasible system demonstrated it: the lineage-size rule dropped the only refutation
-  combination. Both the Python and Rust solvers now use sound subsumption — bucket by sign-normalised
-  bound, keep the strongest — with regression tests on each side.
-- **329 build artefacts were committed.** `target/`, the compiled `vexx_py.so` and a root symlink
-  were removed from the index and ignored.
+## The headline: a code-generation and research-verification engine
 
-## Horizon 1 — speed & caching
+A new modular subsystem under `python/vexx/code_engine/`, plus `cas.py`, `calibration.py`,
+`cache_protocol.py`, `rl/code_rewards.py` and `bridges/code_hf.py`:
 
-- The Rust `VocabularyTrie` was rebuilt as a structured PDA-driven depth-first traversal: one call
-  returns the whole allowed-token set, or a packed `u64` bitset (`mask_bitset`), without cloning the
-  tokenizer vocabulary on every step.
-- Python's `TokenMasker` caches by a canonical PDA signature — stack shape, seen-key hash and pending
-  number/string state — instead of the raw prefix.
-- Rust Fourier–Motzkin elimination keeps provenance as a `u64` bitmask for exact `unsat_core` lineage.
+- **Incremental lexer** (`LexerState`, `advance_lexer_state`) with PEP 701 nested f-string support.
+- **Live callable contracts** (`ParameterContract`, `CallableContract`, `check_call`,
+  `build_contracts`, `header_contract_from_text`) that verify arguments as calls are decoded.
+- **Tier-0 / Tier-1 masking** (`VexxCodeController.mask_logits`, `filter_draft_tokens`) with token-id
+  validation, sparse-vocabulary support and a typed `DeadEnd` when every candidate is masked.
+- **Safe symbolic CAS** (`safe_sympy`, `crane_cas_evaluate`, `solve_linear_system`,
+  `integrate_definite`, `modular_pow`) behind the optional `.[cas]` extra.
+- **Rational single-row conflict contractor** (`contract_single_row`) with explicit relation
+  direction and generic cache adapters.
+- **Statistical, dimensional and epistemic diagnostics** (`verify_statistical_report`,
+  `verify_epistemic_calibration`, `parse_unit_dimensions`) with corrected GRIM rounding intervals and
+  Student-t handling.
+- **Isolated subprocess sandbox** (`SandboxRunner`) with honest `network_isolated` reporting — it
+  never falls back to in-process `exec`.
+- **Multi-cell experiments** (`ExperimentEpisode`) with bounded preambles.
+- **Candidate verification**, empirical consensus selection (`select_candidate`), differential
+  fuzzing (`fuzz_against_oracle`), RLVR rewards and atomic DPO export.
+- **Hugging Face code logits processor** (`VexxCodeLogitsProcessor`).
 
-## Horizon 2 — per-field KL-distortion receipts
+## Corrections over the reference implementation
 
-At every sampled step, the distortion introduced by hard masking is exactly `−log(P_raw(allowed))`.
-Vexx now tracks it per field and per step (`DecodeTelemetry.field_kl_divergence`,
-`kl_distortion_tokens`).
+These are the differences that make the standalone release safe to document:
 
-`result.receipt()` — on both `DecodeResult` and `generate()`'s `VerifiedResult` — returns a
-self-contained audit record:
+- Nested f-string quote handling no longer rejects valid nested string literals.
+- Session-isolated symbol tables are keyed by a collision-resistant digest.
+- Tokenizer ids are validated — no negative indexing, sparse vocabularies handled explicitly.
+- CAS is optional and bounded; a base `import vexx` works without SymPy or NumPy.
+- GRIM compares against the rounding interval implied by the printed precision.
+- The t-test uses real Student-t when available; `z` is two-sided only when declared.
+- Cache rewind sits behind a protocol and recurrent state fails closed.
+- The sandbox never claims network isolation it cannot enforce.
+- Speculative filtering is documented as syntax-only prefix filtering, not a parallel tree verifier.
+- Consensus selection is documented as **empirical** consensus, not formal MBR.
+- RLVR rewards are not claimed to be reward-hacking-proof.
 
-```python
-import vexx as vx
+## Carried forward from the 1.5 hardening line
 
-result = vx.generate(model=model, prompt="port", spec=portfolio)
-print(result.receipt())
-# {
-#   'sha256': '…', 'status': 'PASS', 'attempts': 1, 'backtracks': 0,
-#   'jump_forward': {...}, 'field_kl_divergence': {'weight_a': 3.47, ...}
-# }
-```
+The earlier engine layer is unchanged in 2.1 and still covered by its tests:
 
-That number is the honest answer to "did the constraint cost me accuracy?" — instead of an opinion.
-
-## Horizon 3 — agentic ecosystem
-
-### `vexx serve` — a verifying OpenAI-compatible proxy
-
-```bash
-vexx serve --upstream http://localhost:11434/v1 --spec-module schemas.py --port 8080
-```
-
-Non-streaming `/v1/chat/completions` responses are re-verified against a `@vx.verified_schema`
-before the client sees them: `422 vexx_verification_failed` on violation, otherwise the completion
-returns with a `vexx_certificate` attached. Streaming (SSE) forwards token-by-token and injects a
-`data: {"vexx_certificate": …}` event before `[DONE]`, with chunked framing and a held-back
-terminator.
-
-### `vexx export-rl` — your backtracks are a dataset
-
-Decoder conflict traces (`DecodeConfig(rl_trace_path=...)`) become TRL-ready preference data: DPO
-shared-prefix pairs or dense per-step GRPO rewards, with counts and SHA-256 manifests for each export.
-
-### `vx.VexxMcpSession` — the MCP firewall
-
-Temporal masking of tool picks with LTLf (`session.allowed_tools()`), symbolic environment binding
-across turns (`last_order_total`, `<tool>.<key>`), accumulation counters (`refunded`, `total_cost`),
-per-call spend caps and budgets, taint tracking (`UntrustedString` plus pydantic-native validation),
-`requires_taint_free` blocking and `on_violation=raise|return`.
-
-```python
-session = vx.VexxMcpSession(temporal_policy=vx.before("lookup_order", "issue_refund"))
-
-@session.verified_tool(name="issue_refund", requires_taint_free=True)
-def issue_refund(args, state):
-    vx.mcp.mcp_require(args.refund_amount <= state.env["last_order_total"])
-    return {"refunded": args.refund_amount}
-```
-
-### `vexx explain-unsat` — the smallest fix, not a lecture
-
-For each core constraint, report the smallest additive slack that repairs the system — or say
-plainly that the conflict is structural. It also reports exact 1-D bound conflicts, including the
-bounds the transpiler tightened for you.
-
-### Adaptive `<|solver_feedback|>` reflex
-
-With `DecodeConfig(reflex_on_backtrack=True)`, a CDCL jumpback re-opens a bounded CRANE scratchpad
-seeded with the algebraic conflict: field, reason, domain cut. The span is appended to
-`result.reasoning` only — never to the decoded JSON — with explicit markers so an agent loop can
-lift it verbatim.
+- Per-field **KL-distortion receipts**. At every sampled step the distortion from hard masking is
+  exactly `−log(P_raw(allowed))`, tracked per field and per step and bundled into `result.receipt()`.
+- The **MCP firewall** (`VexxMcpSession`, `@verified_tool`): LTLf temporal masking of tool picks,
+  symbolic `last_*` environment binding, spend caps, taint tracking on untrusted strings.
+- **`vexx serve`**: an OpenAI-compatible `/v1/chat/completions` proxy. Non-streaming responses are
+  re-verified (422 on violation); streaming responses carry a `vexx_certificate` event before close.
+- **`vexx explain-unsat`**: per-clause minimal widening or raising, or a straight answer that the
+  conflict is structural.
+- **`vexx export-rl`**: DPO/GRPO JSONL with SHA-256 manifests from decoder traces.
+- Soundness fixes for indefinite quadratic forms, word-boundary regexes and Fourier–Motzkin pruning.
 
 ## Verification status
 
-- **425 tests pass** in the default suite. 41 native-parity tests skip unless the wheel is built.
-- **69 Rust unit tests pass**; the crate builds and tests standalone, and CI exercises the full
-  workspace including pyo3 and wasm.
-- New coverage: the MCP firewall end to end, receipt numerics, `export-rl` manifests,
-  `explain-unsat` on both bound and clause conflicts, and the live proxy via a subprocess fixture.
+- **425 Python tests pass** in the default suite; 41 native-parity tests skip unless the wheel is built.
+- **69 Rust unit tests** plus **12 property tests** in `crates/vexx-core/tests/soundness.rs`.
+- CI runs `cargo test`, `clippy -D warnings`, the pyo3 build and the wasm build.
 
 ## Known limitations, honestly
 
-- `vexx serve` is a **monitor** for streaming traffic — token chunks cannot be un-emitted. Hard
-  enforcement is the non-streaming path, where the 422 arrives before the client's buffer fills.
-- `explain-unsat` computes single-clause minimal deltas by bisection. Joint relaxation is reported
-  but not globally optimised.
-- The relaxation wizard probes Fourier–Motzkin directly, so very large cores return status reports
-  rather than deltas (more than 12 variables).
-- This milestone ships no live LLM benchmark harness in-repo. `benchmarks/decode_smoke.py` and
-  `benchmarks/native_speedup.py` cover the reference engine deterministically.
+- Rust/WASM acceleration is unchanged for existing JSON-mask semantics; the new code engine ships in
+  pure Python first.
+- Sandbox network isolation depends on the host OS or container and is reported honestly per run.
+- CAS CPU protection uses operation and size bounds, not an in-process timeout.
+- Statistical diagnostics return `UNKNOWN` when evidence is insufficient.
+- No benchmark numbers are claimed from unit tests.
 
-<Callout variant="check" title="Upgrading from vexx1.1">
-The public API is additive. The behavioural changes to know about: indefinite quadratic forms now
-verify instead of falsely refuting, `\b`/`\B` patterns now compile, and Fourier–Motzkin solvers use
-subsumption instead of Kohler pruning. If you were relying on the old (unsound) pruning to declare
-`UNSAT`, expect a slower but correct `UNKNOWN` instead.
+<Callout variant="check" title="Branding note">
+The release is branded **Vexx 2.1**. `Vexx35Controller` / `Vexx3Controller` identifiers are not the
+primary API; at most they are deprecated aliases. Python and Rust versions stay aligned at `2.1.0`.
 </Callout>

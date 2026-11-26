@@ -2,7 +2,7 @@
 
 ## Summary
 
-This PR adds the complete **vexx-ui** website — the official marketing, interactive WebAssembly playground, and documentation portal for [Vexx](https://github.com/sahil-gaikwad94/veritas).
+This PR adds the complete **vexx-ui** website — the official marketing, interactive WebAssembly playground, and documentation portal for [Vexx](https://github.com/sahil-gaikwad94/vexx).
 
 ## What's Included
 
